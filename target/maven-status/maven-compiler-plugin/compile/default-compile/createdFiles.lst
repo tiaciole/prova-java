@@ -1,0 +1,10 @@
+br\com\contmatic\prova\utils\CpfUtil.class
+br\com\contmatic\prova\constants\EnderecoConstantes.class
+br\com\contmatic\prova\model\empresa\Empresa.class
+br\com\contmatic\prova\model\empresa\PessoaJuridica.class
+br\com\contmatic\prova\model\auditoria\Auditoria.class
+br\com\contmatic\prova\constants\EmpresaConstantes.class
+br\com\contmatic\prova\model\empresa\Setor.class
+br\com\contmatic\prova\utils\ValidacaoUtil.class
+br\com\contmatic\prova\utils\CnpjUtil.class
+br\com\contmatic\prova\model\empresa\Funcionario.class
