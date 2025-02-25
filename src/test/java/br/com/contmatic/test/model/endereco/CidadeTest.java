@@ -55,7 +55,7 @@ public class CidadeTest {
 		String nomeComMai80Caracteres = "VAiVcwIxyyqElx@NJNgPuKxEbBBmPuSbrMYxdEyrFGwCeZgfqumvwFprpSUgQfpmxLrgodfdfvLWWHkçw";
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> new Cidade(nomeComMai80Caracteres, estado));
-		assertEquals("O tamanho máximo é de 80 caracteres", erro.getMessage());
+		assertEquals("O tamanho máximo é de 80 caracteres", erro.getMessage());//teste
 	}
 
 	@Test
