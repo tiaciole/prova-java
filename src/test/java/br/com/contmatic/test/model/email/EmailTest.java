@@ -19,6 +19,8 @@ import br.com.contmatic.prova.utils.constants.EmailConstantes;
 
 public class EmailTest {
 
+	private static final String ROBERTO_GMAIL_COM = "Roberto@gmail.com";
+	private static final String NOME_TIAGO = "Tiago";
 	private static final String TIAGO_GMAIL_COM = "Tiago@gmail.com";
 	Email email;
 
@@ -93,7 +95,7 @@ public class EmailTest {
 
 	@Test
 	void deve_retornar_falso_para_equals_com_diferentes_classes() {
-		assertNotEquals(email, new Funcionario("Tiago", "87806981071"));
+		assertNotEquals(email, new Funcionario(NOME_TIAGO, "87806981071"));
 	}
 
 	@Test
@@ -107,7 +109,7 @@ public class EmailTest {
 	
 	@Test
 	void deve_retornar_falsoo_para_objetos_com_email_e_tipo_diferente() {
-		Email email1 = new Email("Roberto@gmail.com");
+		Email email1 = new Email(ROBERTO_GMAIL_COM);
 		email1.setTipo("comercial");
 		email.setTipo("residencial");
 		assertNotEquals(email, email1);
