@@ -42,7 +42,7 @@ class EmpresaTest {
 
 	@Test
 	void deve_aceitar_razao_social_valida() {
-		assertEquals("Tiago Aciole", empresa.getRazaoSocial());
+		assertEquals("Tiago Aciole", empresa.getRazaoSocial());//teste
 	}
 
 	@Test
