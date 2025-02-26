@@ -1,6 +1,10 @@
 package br.com.contmatic.prova.utils.constants;
 
-public class AuditoriaConstantes {
+public final class AuditoriaConstantes {
+	
+	private AuditoriaConstantes() {
+		
+	}
 	
 	public static final String NOME_CRIADOR_OBRIGATORIO = "O Nome Criador é de preenhimento obrigatorio";
 	

@@ -1,6 +1,10 @@
 package br.com.contmatic.prova.utils.constants;
 
-public class EmailConstantes {
+public final class EmailConstantes {
+	
+	private EmailConstantes() {
+		
+	}
 	
 	public static final String EMAIL_NULO_INVALIDO = "O campo email está nulo";
 	

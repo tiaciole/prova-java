@@ -1,6 +1,10 @@
 package br.com.contmatic.prova.utils.constants;
 
-public class CnpjConstantes {
+public final class CnpjConstantes {
+	
+	private CnpjConstantes() {
+		
+	}
 	
 	public static final String ERRO_CNPJ_OBRIGATORIO = "O campo cnpj é obrigatório";
 	
