@@ -42,7 +42,7 @@ public class Telefone extends Auditoria{
 		return ddd;
 	}
 	public void setDdd(String ddd) {
-		verificaNulo(ddd, "Número de DDI inválido");
+		verificaNulo(ddd, "Número de DDD nulo");
 		verificaValorVazio(ddd, "Número de DDD inválido");
 		verificaTamanhoMinimo(ddd, 2, "O campo DDD deve ser no minimo 2 caracteres");
 		verificaTamanhoMaximo(ddd, 2, "O tamanho maximo do campo DDD é 2 caracteres");
@@ -53,7 +53,7 @@ public class Telefone extends Auditoria{
 		return numero;
 	}
 	public void setNumero(String numero) {
-		verificaNulo(numero, "Número do telefone inválido");
+		verificaNulo(numero, "Número do telefone nulo");
 		verificaValorVazio(numero, "Número do telefone inválido");
 		verificaTamanhoMinimo(numero, 8, "Numero do telefone dever o minimo de 8 caracteres");
 		verificaTamanhoMaximo(numero, 9, "Número do telefone deve conter o maxio de 9 caraceteres");
@@ -64,7 +64,7 @@ public class Telefone extends Auditoria{
 		return tipo;
 	}
 	public void setTipo(String tipo) {
-		verificaNulo(numero, "Número do telefone inválido");
+		verificaNulo(numero, "Tipo do telefone nulo");
 		verificaValorVazio(numero, "Número do telefone inválido");
 		verificaRegex(tipo, "^[a-zA-Z]+$", "O Campo tipo aceita apenas texto");
 		this.tipo = tipo;

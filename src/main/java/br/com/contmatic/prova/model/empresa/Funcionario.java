@@ -72,7 +72,7 @@ public class Funcionario extends Auditoria {
 	}
 	
 	public void setCpf(String cpf) {
-		CpfUtils.validaCpf(cpf);
+		CpfUtils.isCPF(cpf);
 		this.cpf = cpf;
 	}
 	

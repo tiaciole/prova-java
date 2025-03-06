@@ -1,12 +1,31 @@
 package br.com.contmatic.test.model.empresa;
 
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_INSCRICAO_ESTADUAL_NAO_PODE_SER_NULA;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_INSCRICAO_ESTADUAL_NAO_PODE_SER_VAZIA;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_SITUACAO_TRIBUTARIA_DEVE_TER_APENAS_NUMEROS;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_SITUACAO_TRIBUTARIA_DEVE_TER_NO_MAXIMO_10_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_SITUACAO_TRIBUTARIA_DEVE_TER_NO_MININO_5_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_SITUACAO_TRIBUTARIA_NAO_DEVE_SER_NULA;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_SITUACAO_TRIBUTARIA_NAO_DEVE_TER_APENAS_CARACTERES_REPETIDOS;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.DEVE_EXISTIR_AO_MENOS_2_SETORES;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.INSCRICAO_ESTADUAL_DEVE_TER_APENAS_NUMERO;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.INSCRICAO_ESTADUAL_NAO_DEVE_TER_APENAS_CARACTERES_REPETIDOS;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.INSCRICAO_ESTUDAL_DEVE_TER_MAXIMO_10_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.INSCRICAO_ESTUDAL_DEVE_TER_MINIMO_5_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.LIMITE_DA_LISTA_SETORES;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_SETOR_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_SETOR_NAO_PODE_SER_VAZIO;
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
 
@@ -20,6 +39,7 @@ import br.com.contmatic.prova.model.empresa.Empresa;
 import br.com.contmatic.prova.model.empresa.Funcionario;
 import br.com.contmatic.prova.model.empresa.Setor;
 import br.com.contmatic.prova.model.endereco.Endereco;
+import br.com.contmatic.prova.utils.constants.EmpresaConstantes;
 
 class EmpresaTest {
 
@@ -104,76 +124,76 @@ class EmpresaTest {
 	void nao_deve_aceitar_inscricao_estadual_nulo() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setInscricaoEstadual(null));
-		assertEquals("A Inscrição Estadual é de preenhimento obrigatorio", erro.getMessage());
+		assertEquals(A_INSCRICAO_ESTADUAL_NAO_PODE_SER_NULA, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_inscricao_estadual_vazio() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setInscricaoEstadual(""));
-		assertEquals("O campo Inscrição Estadual é obrigatório", erro.getMessage());
+		assertEquals(A_INSCRICAO_ESTADUAL_NAO_PODE_SER_VAZIA, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_inscricao_estadual_menor_que_5_caracteres() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setInscricaoEstadual("1234"));
-		assertEquals("O Campo Inscrição Estadual deve conter o minimo de 5 caracteres", erro.getMessage());
+		assertEquals(INSCRICAO_ESTUDAL_DEVE_TER_MINIMO_5_CARACTERES, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_inscricao_estadual_maior_que_10_caracteres() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setInscricaoEstadual("123445678901"));
-		assertEquals("O campo Inscrição Estadual deve ter o tamanho máximo de 10 caracteres", erro.getMessage());
+		assertEquals(INSCRICAO_ESTUDAL_DEVE_TER_MAXIMO_10_CARACTERES, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_conter_letra_no_campo_inscricao_estadual() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setInscricaoEstadual("123445678k"));
-		assertEquals("O campo Inscrição Estadual deve ser apenas números", erro.getMessage());
+		assertEquals(INSCRICAO_ESTADUAL_DEVE_TER_APENAS_NUMERO, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_inscricao_estadual_com_caracteres_repetidos() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setInscricaoEstadual("55555555"));
-		assertEquals("Inscrição Estadual inválida", erro.getMessage());
+		assertEquals(INSCRICAO_ESTADUAL_NAO_DEVE_TER_APENAS_CARACTERES_REPETIDOS, erro.getMessage());
 	}
 
 	@Test
 	void deve_aceitar_situacao_tributaria_valida() {
 		empresa.setSituacaoTributaria("1234567890");
-		assertEquals(empresa.getSituacaoTributaria(), "1234567890");
+		assertEquals("1234567890", empresa.getSituacaoTributaria());
 	}
 
 	@Test
 	void nao_deve_aceitar_situacao_tributaria_nulo() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setSituacaoTributaria(null));
-		assertEquals("A Situação Tributaria é de preenhimento obrigatorio", erro.getMessage());
+		assertEquals(A_SITUACAO_TRIBUTARIA_NAO_DEVE_SER_NULA, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_situacao_tributaria_vazio() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setSituacaoTributaria(""));
-		assertEquals("O campo Situação Tributaria não pode contes espaços em branco", erro.getMessage());
+		assertEquals( EmpresaConstantes.A_SITUACAO_TRIBUTARIA_NAO_PODE_SER_VAZIA, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_situacao_tributaria_menor_que_5_caracteres() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setSituacaoTributaria("1234"));
-		assertEquals("O Campo Situação Tributaria deve conter o minimo de 5 caracteres", erro.getMessage());
+		assertEquals(A_SITUACAO_TRIBUTARIA_DEVE_TER_NO_MININO_5_CARACTERES, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_situacao_tributaria_maior_que_10_caracteres() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setSituacaoTributaria("12345678901"));
-		assertEquals("O campo Situação Tributaria deve ter o tamanho máximo de 10 caracteres", erro.getMessage());
+		assertEquals(A_SITUACAO_TRIBUTARIA_DEVE_TER_NO_MAXIMO_10_CARACTERES, erro.getMessage());
 		;
 	}
 
@@ -181,7 +201,7 @@ class EmpresaTest {
 	void deve_aceitar_situacao_tributaria_apenas_com_numero() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setSituacaoTributaria("123456789k"));
-		assertEquals("O campo Situação Tributaria deve ser apenas números", erro.getMessage());
+		assertEquals(A_SITUACAO_TRIBUTARIA_DEVE_TER_APENAS_NUMEROS, erro.getMessage());
 		;
 	}
 
@@ -189,7 +209,7 @@ class EmpresaTest {
 	void nao_deve_aceitar_situacao_tributaria_com_caracteres_repetidos() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setSituacaoTributaria("5555555555"));
-		assertEquals("Situação Tributaria inválida", erro.getMessage());
+		assertEquals(A_SITUACAO_TRIBUTARIA_NAO_DEVE_TER_APENAS_CARACTERES_REPETIDOS, erro.getMessage());
 		;
 	}
 
@@ -209,7 +229,7 @@ class EmpresaTest {
 	@Test
 	void nao_deve_aceitar_campo_setor_nulo() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> empresa.setSetores(null));
-		assertEquals(erro.getMessage(), "O setor é de preenhimento obrigatorio");
+		assertEquals(O_CAMPO_SETOR_NAO_PODE_SER_NULO, erro.getMessage());
 	}
 
 	@Test
@@ -217,7 +237,7 @@ class EmpresaTest {
 		Set<Setor> listaSetores = new HashSet<>();
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setSetores(listaSetores));
-		assertEquals(erro.getMessage(), "Não existem setores cadastrados");
+		assertEquals(O_CAMPO_SETOR_NAO_PODE_SER_VAZIO, erro.getMessage());
 	}
 
 	@Test
@@ -228,7 +248,7 @@ class EmpresaTest {
 		listaSetores.add(setor);
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setSetores(listaSetores));
-		assertEquals(erro.getMessage(), "Deve existir ao menos 2 setor cadastrado");
+		assertEquals(DEVE_EXISTIR_AO_MENOS_2_SETORES, erro.getMessage());
 	}
 
 	@Test
@@ -236,14 +256,10 @@ class EmpresaTest {
 		Funcionario funcionario = new Funcionario("Tiago", "97973956000");
 		Set<Setor> listaSetores = new HashSet<>();
 		IntStream.range(0, 5).forEach(indice
-				-> listaSetores.add(new Setor("Recursos Humanos" + indice, funcionario)));//TODO entender esse
-//		for (int i = 0; i <= 5; i++) {
-//			Setor setor = new Setor("Recursos Humanos" + i, funcionario);
-//			listaSetores.add(setor);
-//		}
+				-> listaSetores.add(new Setor("Recursos Humanos" + indice, funcionario)));
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setSetores(listaSetores));
-		assertEquals(erro.getMessage(), "Não é possivel cadastrar mais que 4 setores");
+		assertEquals(LIMITE_DA_LISTA_SETORES, erro.getMessage());
 	}
 
 	@Test
@@ -273,7 +289,6 @@ class EmpresaTest {
 	@Test
 	void nao_deve_aceitar_mais_que_10_funcionarios_cadastrados() {
 		Set<Funcionario> funcionarioLista = new HashSet<>();
-		Empresa empresa = new Empresa("Tiago Aciole", "67987198000110");
 		Funcionario funcionario0 = new Funcionario("Tiago1", "97973956000");
 		Funcionario funcionario1 = new Funcionario("Tiago2", "90976981033");
 		Funcionario funcionario2 = new Funcionario("Tiago3", "85078717048");
@@ -299,7 +314,7 @@ class EmpresaTest {
 		System.out.println(funcionarioLista);
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setFuncionarios(funcionarioLista));
-		assertEquals(erro.getMessage(), "Não podem existir mais de 10 funcionarios cadastrados");
+		assertEquals("Não podem existir mais de 10 funcionarios cadastrados", erro.getMessage());
 
 	}
 
@@ -312,7 +327,6 @@ class EmpresaTest {
 
 	@Test
 	void deve_aceitar_data_valida_no_campo_data_criacao() {
-		Empresa empresa = new Empresa("Tiago", "67987198000110");
 		empresa.setDataCriacao(LocalDate.now());
 		assertEquals(empresa.getDataCriacao(), LocalDate.now());
 
@@ -357,13 +371,12 @@ class EmpresaTest {
 	@Test
 	void deve_retornar_verdadeiro_para_objetos_iguais() {
 		assertEquals(empresa, empresa);
-
 	}
 
 	@Test
 	void deve_retornar_falso_para_equals_comparado_com_nulo() {
-		assertNotEquals(empresa,null);
-
+		Empresa empresa = new Empresa("Tiago Aciol2e", "67987198000110");
+		assertNotEquals(empresa, null);
 	}
 
 	@Test
@@ -403,7 +416,26 @@ class EmpresaTest {
 		empresa.setSituacaoTributaria("1234567");
 		MatcherAssert.assertThat(empresa.toString(), containsString("1234567"));
 	}
-
+	
+	@Test
+	void empresa_deve_ser_ativa() {
+		empresa.setisAtivo(TRUE);
+		assertEquals(TRUE, empresa.getisAtivo());
+	}
+	
+	@Test
+	void empresa_nao_deve_ser_ativa() {
+		empresa.setisAtivo(FALSE);
+		assertEquals(FALSE, empresa.getisAtivo());
+	}
+	
+	@Test
+	void empresa_nao_deve_ser_ativa_nulo() {
+		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
+				() -> empresa.setisAtivo(null));
+		assertEquals("O status e´obrigatorio", erro.getMessage());
+	}
+	
 	@Test
 	void deve_retornar_setor_no_tostring() { // teste toString completo
 		Set<Setor> listaSetores = new HashSet<>();

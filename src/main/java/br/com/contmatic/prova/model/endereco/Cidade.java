@@ -9,7 +9,9 @@ import static br.com.contmatic.prova.utils.constants.CidadeConstantes.O_CAMPO_NO
 
 import java.util.Objects;
 
-public class Cidade {
+import br.com.contmatic.prova.model.auditoria.Auditoria;
+
+public class Cidade extends Auditoria {
 
 	private String nome;
 

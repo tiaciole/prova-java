@@ -6,11 +6,12 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanhoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanhoMinimo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaValorVazio;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_NOME_DO_ESTADO_E_OBRIGATORIO;
-import static java.lang.System.out;
 
 import java.util.Objects;
 
-public class Estado {
+import br.com.contmatic.prova.model.auditoria.Auditoria;
+
+public class Estado extends Auditoria {
 
 	private static final int QUANTIDADE_MINIMA_80_CARACTERES = 80;
 
@@ -38,7 +39,6 @@ public class Estado {
 	}
 
 	public String getUf() {
-		out.println("ABC");
 		return uf;
 	}
 	
@@ -60,7 +60,7 @@ public class Estado {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (null == obj)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;

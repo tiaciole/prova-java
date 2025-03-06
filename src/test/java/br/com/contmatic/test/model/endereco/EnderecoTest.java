@@ -16,7 +16,7 @@ import br.com.contmatic.prova.model.endereco.Endereco;
 import br.com.contmatic.prova.model.endereco.Estado;
 import br.com.contmatic.prova.utils.constants.EnderecoConstantes;
 
-public class EnderecoTest {
+ class EnderecoTest {
 
 	private static final String MAIS_DE_80_CARACTERES = "444CudydwTAYfxyeM3cGoEJXXqNBOZ8ndNKnqStqMYEGojYAvui6O7XNy5LnHQmMm7tLbYxR29eFIV7fgM8S";
 
@@ -29,14 +29,12 @@ public class EnderecoTest {
 	
 	@Test
 	void deva_ceitar_logradouro_valido() {
-		Endereco endereco = new Endereco(11, "03929110", "Casa1");
 		endereco.setLogradouro("Rua Oliveira");
 		assertEquals("Rua Oliveira", endereco.getLogradouro());
 	}
 
 	@Test
 	void deve_aceitar_numero_do_logradouro() {
-		Endereco endereco = new Endereco(11, "03929110", "Casa1");
 		assertEquals(11, endereco.getNumero());
 	}
 	
@@ -64,19 +62,16 @@ public class EnderecoTest {
 
 	@Test
 	void deve_aceitar_cep_logradouro() {
-		Endereco endereco = new Endereco(11, "03929110", "Casa1");
 		assertEquals("03929110", endereco.getCep());
 	}
 
 	@Test
 	void deve_aceitar_complemento_do_endereco() {
-		Endereco endereco = new Endereco(11, "03929110", "Casa1");
 		assertEquals("Casa1", endereco.getComplemento());
 	}
 
 	@Test
 	void nao_deve_aceitar_logradouro_nulo() {
-		Endereco endereco = new Endereco(11, "03929110", "Casa1");
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> endereco.setLogradouro(null));
 		assertEquals("O campo Logradouro é de preenhimento obrigatorio", erro.getMessage());
@@ -84,21 +79,18 @@ public class EnderecoTest {
 
 	@Test
 	void nao_deve_aceitar_campo_logradouro_vazio() {
-		Endereco endereco = new Endereco(11, "03929110", "Casa1");
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> endereco.setLogradouro(""));
 		assertEquals("O campo Logradouro é de preenhimento obrigatorio", erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_logradouro_com_menos_de_2_caracteres() {
-		Endereco endereco = new Endereco(11, "03929110", "Casa1");
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> endereco.setLogradouro("1"));
 		assertEquals(O_TAMANHO_MINIMO_E_DE_2_CARACTERES, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_logradouro_com_mais_de_80_caracteres() {
-		Endereco endereco = new Endereco(11, "03929110", "Casa1");
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> endereco.setLogradouro("444CusywTAYfxyeM3cGoEJXXqNBOZ8nNKnqStqMYEGoYAvui6O7XNy5LnHQmMm7tLbYxR29eFIV7fgM8S"));
 		assertEquals(TAMANHO_MAXIMO_80_CARACTERES_LOGRADOURO, erro.getMessage());
@@ -106,35 +98,30 @@ public class EnderecoTest {
 
 	@Test
 	void deve_aceitar_campo_endereco_valido() {
-		Endereco endereco = new Endereco(11, "03929110", "Casa1");
 		endereco.setBairro("Jd Tiete");
 		assertEquals("Jd Tiete", endereco.getBairro());
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_bairro_nulo() {
-		Endereco endereco = new Endereco(11, "03929110", "Casa1");
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> endereco.setBairro(null));
 		assertEquals("O campo Bairro é de preenhimento obrigatorio", erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_bairro_vazio() {
-		Endereco endereco = new Endereco(11, "03929110", "Casa1");
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> endereco.setBairro(""));
 		assertEquals("O campo Bairro é de preenhimento obrigatorio", erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_bairro_com_menos_de_2_caracteres() {
-		Endereco endereco = new Endereco(11, "03929110", "Casa1");
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> endereco.setBairro("k"));
 		assertEquals(O_TAMANHO_MINIMO_E_DE_2_CARACTERES, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_bairro_com_mais_de_80_caracteres() {
-		Endereco endereco = new Endereco(11, "03929110", "Casa1");
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> endereco
 				.setBairro(MAIS_DE_80_CARACTERES));
 		assertEquals("O tamanho máximo do campo Logradouro é de 80 caracteres", erro.getMessage());
@@ -142,14 +129,12 @@ public class EnderecoTest {
 
 	@Test
 	void nao_deve_aceitar_campo_cidade_nulo() {
-		Endereco endereco = new Endereco(11, "03929110", "Casa1");
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> endereco.setCidade(null));
 		assertEquals("A Cidade é de preenchimento obrigatorio", erro.getMessage());
 	}
 
 	@Test
 	void deve_aceitar_campo_cidade_valida() {
-		Endereco endereco = new Endereco(11, "03929110", "Casa1");
 		Estado estado = new Estado("MA");
 		Cidade cidade = new Cidade("SP", estado);
 		endereco.setCidade(cidade);
@@ -175,7 +160,6 @@ public class EnderecoTest {
 	@Test
 	void deve_retornar_falso_para_equals_com_diferentes_classes() {
 		Funcionario funcionario = new Funcionario("Tiago","47044517048");
-		Endereco endereco = new Endereco(11,"03929110","Casa1");
 		assertNotEquals(endereco, funcionario); 
 	}
 	

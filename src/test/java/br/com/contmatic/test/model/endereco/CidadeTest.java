@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import br.com.contmatic.prova.model.endereco.Cidade;
 import br.com.contmatic.prova.model.endereco.Estado;
 
-public class CidadeTest {
+class CidadeTest {
 
 	@Test
 	void deve_aceitar_campo_cidade_prenchido() {
@@ -94,7 +94,7 @@ public class CidadeTest {
 		Cidade cidade2 = new Cidade("SAO PAULO", estado);
 		assertEquals(cidade1, cidade2);
 	}
-	
+
 	@Test
 	void deve_retornar_falso_para_objetos_com_estado_diferente() {
 		Estado estado = new Estado("AM");
@@ -107,6 +107,6 @@ public class CidadeTest {
 	void deve_retornar_verdadeiro_o_toString() {
 		Estado estado = new Estado("SP");
 		Cidade cidade1 = new Cidade("SAO PAULO", estado);
-		assertEquals("Cidade [nome=SAO PAULO, estado=Estado [nome=null, uf=SP]]",cidade1.toString());
+		assertEquals("Cidade [nome=SAO PAULO, estado=Estado [nome=null, uf=SP]]", cidade1.toString());
 	}
 }

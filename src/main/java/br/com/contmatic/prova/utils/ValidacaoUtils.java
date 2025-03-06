@@ -94,12 +94,6 @@ public final class ValidacaoUtils {
 		}
 	}
 
-//	public static void verificaListaVazia(List<Funcionario> collection, String mensagem) {
-//		if (collection.isEmpty()) {
-//			throw new IllegalArgumentException(mensagem);
-//		}
-//	}
-
 	public static void verificaTamanoMinimoLista(List<Funcionario> collection, int tamanho, String mensagemErro) {
 		if (collection.size() < tamanho) {
 			throw new IllegalArgumentException(mensagemErro);
@@ -150,4 +144,5 @@ public final class ValidacaoUtils {
 			throw new IllegalArgumentException(mensagem);
 		}
 	}
+	
 }

@@ -1,5 +1,10 @@
 package br.com.contmatic.prova.utils;
 
+import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaCaracteresRepetidos;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaNulo;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanhoLimite;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaValorVazio;
+
 public final class CpfUtils {
 
 	private static final int ONZE = 11;
@@ -12,54 +17,44 @@ public final class CpfUtils {
 
 	private CpfUtils() { // construtor private para ningeum instanciar essa classe 
 	}
-
-	public static void validaCpf(String cpf) {
-		ValidacaoUtils.verificaNulo(cpf, "O campo Cpf é obrigatório");
-		ValidacaoUtils.verificaValorVazio(cpf, "O campo CPF não deve ser vazio");
-		ValidacaoUtils.verificaTamanhoLimite(cpf, 11, "O CPF deve ter 11 caracteres");
-		ValidacaoUtils.verificaCaracteresRepetidos(cpf, "O CPF não deve conter uma sequencia de número repetidos");
-
-		
-		int numeroInteiro;
-		int peso = VALOR_INICIAL_PESO_PRIMEIRO_DIGITO;
-		int resultado;
+	
+	public static void isCPF(String cpf) {
+		verificaNulo(cpf, "O campo Cpf é obrigatório");
+		verificaValorVazio(cpf, "O campo CPF não deve ser vazio");
+		verificaTamanhoLimite(cpf, 11, "O CPF deve ter 11 caracteres");
+		verificaCaracteresRepetidos(cpf, "O CPF não deve conter uma sequencia de número repetidos");
+		validaDigitos(cpf);
+	}
+	
+	private static void validaDigitos(String cpf) {
+		char digitoUm = obterDigitoVerificador(cpf, VALOR_INICIAL_PESO_PRIMEIRO_DIGITO, POSICAO_PRIMEIRO_DIGITO_CPF);
+		char digitoDois = obterDigitoVerificador(cpf, VALOR_INICIAL_PESO_SEGUNDO_DIGITO, POSICAO_SEGUNDO_DIGITO_CPF);
+		verificarCpfValido(cpf, digitoUm, digitoDois);
+	}
+	
+	private static char obterDigitoVerificador(String cpf, int peso, int posicaoDigito) {
+		int soma = obterValorSoma(cpf, peso, posicaoDigito);
+		int resultado = ONZE - (soma % 11);
+		if (resultado > 9) {
+		return '0';
+		} 
+		return (char) (resultado + NUMERO_0_TABELA_ASCII);
+	}
+	
+	private static int obterValorSoma(String cpf, int peso, int posicaoDigito) {
 		int soma = ZERO;
-		char digitoUm;
-		char digitoDois;
-		
-		for (int indice = ZERO; indice < POSICAO_PRIMEIRO_DIGITO_CPF; indice++) {
-			numeroInteiro = (int) (cpf.charAt(indice) - NUMERO_0_TABELA_ASCII);
+		for (int indice = ZERO; indice < posicaoDigito; indice++) {
+			int numeroInteiro = (cpf.charAt(indice) - NUMERO_0_TABELA_ASCII);
 			soma = soma + (numeroInteiro * peso);
 			peso = peso - 1;
 		}
+		return soma;
+	}
 
-		resultado = 11 - (soma % 11);
-		if (resultado == 10 || resultado == ONZE) {
-			digitoUm = '0';
-		} else {
-			digitoUm = (char) (resultado + NUMERO_0_TABELA_ASCII);
-		}
-
-		// calculo do digito 2
-
-		soma = ZERO;
-		peso = VALOR_INICIAL_PESO_SEGUNDO_DIGITO;
-		for (int indice = ZERO; indice < POSICAO_SEGUNDO_DIGITO_CPF; indice++) {
-			numeroInteiro = (int) (cpf.charAt(indice) - NUMERO_0_TABELA_ASCII);
-			soma = soma + (numeroInteiro * peso);
-			peso = peso - 1;
-		}
-
-		resultado = 11 - (soma % 11);
-		if (resultado == 10 || resultado == 11) {
-			digitoDois = '0';
-		} else {
-			digitoDois = (char) (resultado + NUMERO_0_TABELA_ASCII);
-		}
-
+	private static void verificarCpfValido(String cpf, char digitoUm, char digitoDois) {
 		if (digitoUm != cpf.charAt(POSICAO_PRIMEIRO_DIGITO_CPF)
 				|| digitoDois != cpf.charAt(POSICAO_SEGUNDO_DIGITO_CPF)) {
 			throw new IllegalArgumentException("CPF Inválido");
 		}
-	}
+	}	
 }

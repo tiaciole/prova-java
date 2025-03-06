@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import br.com.contmatic.prova.model.endereco.Estado;
 import br.com.contmatic.prova.model.telefone.Telefone;
 
-public class TelefoneTest {
+ class TelefoneTest {
 	
 	private Telefone telefone;
 	
@@ -90,7 +90,7 @@ public class TelefoneTest {
 	
 	@Test
 	void deve_retornar_falso_para_equals_comparado_com_nulo() {
-		assertNotEquals(telefone, null);
+		assertNotEquals(telefone,null);
 	}
 	
 	@Test
@@ -116,7 +116,5 @@ public class TelefoneTest {
 	void deve_retornar_verdadeiro_para_o_toString() {
 		assertEquals("Telefone [ddi=031, ddd=11, numero=201682455, tipo=null]", telefone.toString());
 	}
-	
-	
 
 }
