@@ -464,6 +464,4 @@ class EmpresaTest {
 		empresa.setInscricaoEstadual("1234567");
 		MatcherAssert.assertThat(empresa.toString(), containsString("1234567"));
 	}
-	
-	//teste
 }
