@@ -8,7 +8,7 @@ import static br.com.contmatic.prova.utils.constants.SetorConstantes.LISTA_SETOR
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.NOME_SETOR_ADM;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.NOME_TIAGO;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.NUMERO_CPF_TIAGO;
-import static br.com.contmatic.prova.utils.constants.SetorConstantes.ONZE_CARACRETES;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.OITENTA_E_UM_CARACRETES;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.TOSTRING_SETOR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -98,8 +98,8 @@ class SetorTest {
 	@Test
 	void nao_deve_aceitar_nome_do_setor_mais_que_10_caracteres() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> setor.setNome("AD46587khf"));
-		assertEquals(ONZE_CARACRETES, erro.getMessage());
+				() -> setor.setNome(OITENTA_E_UM_CARACRETES));
+		assertEquals("O tamanho maximo é de 80 caracteres", erro.getMessage());
 	}
 
 	@Test

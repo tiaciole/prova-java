@@ -23,9 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.IntStream;
 
@@ -376,7 +374,7 @@ class EmpresaTest {
 	@Test
 	void deve_retornar_falso_para_equals_comparado_com_nulo() {
 		Empresa empresa = new Empresa("Tiago Aciol2e", "67987198000110");
-		assertNotEquals(empresa, null);
+		assertNotEquals(empresa,null);
 	}
 
 	@Test

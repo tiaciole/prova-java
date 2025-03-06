@@ -28,7 +28,7 @@ public final class SetorConstantes {
 		
 		public static final String CAMPO_SETOR_MINIMO_3_CARACTERES = "O tamanho minimo do campo nome é de 3 caracteres";
 		
-		public static final String ONZE_CARACRETES = "AD46587khfg";	
+		public static final String OITENTA_E_UM_CARACRETES = "DFSADVFADFDV5DVF2ADV5ADV2DFSADVFADFDV5DVF2ADV5ADV2DFSADVFADFDV5DVF2ADV5ADV2412DF4";	
 	}
 	
 	
