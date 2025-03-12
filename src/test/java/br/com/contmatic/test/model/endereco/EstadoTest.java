@@ -20,14 +20,12 @@ import br.com.contmatic.prova.model.endereco.Estado;
 
  class EstadoTest {
 
-
 	Estado estado;
 	
 	@BeforeEach
 	void set_up() {
 		estado = new Estado("SP");
 	}
-	
 	
 	@Test
 	void deve_aceitar_nome_do_estado_valido() {
