@@ -1,11 +1,15 @@
 package br.com.contmatic.test.model.email;
 
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.EMAIL_COM_MAIS_DE_80_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.EmailConstantes.EMAIL_DEVE_TER_MAXIMO_DE_50_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.EmailConstantes.EMAIL_DEVE_TER_MINIMO_DE_3_CARACTERES;
-import static br.com.contmatic.prova.utils.constants.EmailConstantes.EMAIL_NULO_INVALIDO;
-import static br.com.contmatic.prova.utils.constants.EmailConstantes.EMAIL_VAZIO_INVÁLIDO;
-import static br.com.contmatic.prova.utils.constants.EmailConstantes.FORMATO_EMAIL_INVALIDO;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.MSG_EMAIL_INVALIDO;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.MSG_EMAIL_VAZIO;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.NOME_TIAGO;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.ROBERTO_GMAIL_COM;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.TIAGO_GMAIL_COM;
 import static br.com.contmatic.prova.utils.constants.EmailConstantes.TIPO_EMAIL_NULO;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.TIPO_EMAIL_VAZIO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -17,11 +21,8 @@ import br.com.contmatic.prova.model.email.Email;
 import br.com.contmatic.prova.model.empresa.Funcionario;
 import br.com.contmatic.prova.utils.constants.EmailConstantes;
 
-public class EmailTest {
+ class EmailTest {
 
-	private static final String ROBERTO_GMAIL_COM = "Roberto@gmail.com";
-	private static final String NOME_TIAGO = "Tiago";
-	private static final String TIAGO_GMAIL_COM = "Tiago@gmail.com";
 	Email email;
 
 	@BeforeEach
@@ -37,13 +38,13 @@ public class EmailTest {
 	@Test
 	void nao_deve_aceitar_campo_email_nulo() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> email.setEmail(null));
-		assertEquals(EMAIL_NULO_INVALIDO, erro.getMessage());
+		assertEquals(TIPO_EMAIL_NULO, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_email_vazio() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> email.setEmail(""));
-		assertEquals(EMAIL_VAZIO_INVÁLIDO, erro.getMessage());
+		assertEquals(MSG_EMAIL_VAZIO, erro.getMessage());
 	}
 
 	@Test
@@ -55,14 +56,14 @@ public class EmailTest {
 	@Test
 	void nao_deve_aceitar_campo_email_com_mais_de_50_caracteres() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> email.setEmail("nAeVdPtnpQRNVDcJKomeRPBDrkcOv@hpTxVYEYryBqBOLxrGJerf44"));
+				() -> email.setEmail(EMAIL_COM_MAIS_DE_80_CARACTERES));
 		assertEquals(EMAIL_DEVE_TER_MAXIMO_DE_50_CARACTERES, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_email_ivalido() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> email.setEmail("rgrgk@"));
-		assertEquals(FORMATO_EMAIL_INVALIDO, erro.getMessage());// TOO ver com o victor
+		assertEquals(MSG_EMAIL_INVALIDO, erro.getMessage());
 	}
 
 	@Test
@@ -74,7 +75,7 @@ public class EmailTest {
 	@Test
 	void nao_deve_aceitar_tipo_de_email_vazio() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> email.setTipo(""));
-		assertEquals(EmailConstantes.EMAIL_VAZIO_INVÁLIDO, erro.getMessage());
+		assertEquals(TIPO_EMAIL_VAZIO, erro.getMessage());
 	}
 
 	@Test

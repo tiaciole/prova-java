@@ -5,11 +5,17 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaCaracteresRepe
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaNulo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanhoLimite;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaValorVazio;
+import static br.com.contmatic.prova.utils.constants.CnpjConstantes.CNPJ_INVALIDO;
+import static br.com.contmatic.prova.utils.constants.CnpjConstantes.O_CAMPO_CNPJ_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.CnpjConstantes.O_CAMPO_CNPJ_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.CnpjConstantes.O_CNPJ_DEVE_TER_14_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.CnpjConstantes.PESO_INICIAL;
 import static br.com.contmatic.prova.utils.constants.CnpjConstantes.PESO_LIMITE;
 import static br.com.contmatic.prova.utils.constants.CnpjConstantes.POSICAO_0_TABELA_ASC;
 import static br.com.contmatic.prova.utils.constants.CnpjConstantes.POSICAO_PRIMEIRO_DIGITO;
 import static br.com.contmatic.prova.utils.constants.CnpjConstantes.POSICAO_SEGUNDO_DIGITO;
+
+import br.com.contmatic.prova.utils.constants.CnpjConstantes;
 
 public final class CnpjUtils {	
 	
@@ -17,10 +23,10 @@ public final class CnpjUtils {
 	}
 	
 	public static void isCnpj(String cnpj) {
-		verificaNulo(cnpj, "O campo cnpj é obrigatório");
-		verificaValorVazio(cnpj, "O campo CNPJ não deve ser vazio");
-		verificaTamanhoLimite(cnpj,14,"Cnpj Inválido");
-		verificaCaracteresRepetidos(cnpj, "Cnpj inválido");
+		verificaNulo(cnpj, O_CAMPO_CNPJ_NAO_PODE_SER_NULO);
+		verificaValorVazio(cnpj, O_CAMPO_CNPJ_NAO_PODE_SER_VAZIO);
+		verificaTamanhoLimite(cnpj,14, O_CNPJ_DEVE_TER_14_CARACTERES);
+		verificaCaracteresRepetidos(cnpj, CNPJ_INVALIDO);
 		validarDigitos(cnpj);
 	}
 	
@@ -69,7 +75,7 @@ public final class CnpjUtils {
 
 	private static void verificaCnpjValido(String cnpj, char digitoUm, char digitoDois) {
 		if (digitoUm != cnpj.charAt(12) || digitoDois != cnpj.charAt(13)) {
-			throw new IllegalArgumentException("Cnpj Inválido");
+			throw new IllegalArgumentException(CNPJ_INVALIDO);
 		}
 	}
 }

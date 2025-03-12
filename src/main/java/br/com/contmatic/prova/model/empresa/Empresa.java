@@ -20,17 +20,36 @@ import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_SITUACA
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_SITUACAO_TRIBUTARIA_NAO_DEVE_SER_NULA;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_SITUACAO_TRIBUTARIA_NAO_DEVE_TER_APENAS_CARACTERES_REPETIDOS;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_SITUACAO_TRIBUTARIA_NAO_PODE_SER_VAZIA;
-import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.CAMPOS_CADASTRO_FUNCIONARIOS_OBRIGATORIO;
-import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.DEVE_EXISTIR_AO_MENOS_2_SETORES;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.INSCRICAO_ESTADUAL_DEVE_TER_APENAS_NUMERO;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.INSCRICAO_ESTADUAL_NAO_DEVE_TER_APENAS_CARACTERES_REPETIDOS;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.INSCRICAO_ESTUDAL_DEVE_TER_MAXIMO_10_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.INSCRICAO_ESTUDAL_DEVE_TER_MINIMO_5_CARACTERES;
-import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.LIMITE_DA_LISTA_SETORES;
-import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_SETOR_NAO_PODE_SER_NULO;
-import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_SETOR_NAO_PODE_SER_VAZIO;
-import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.TAMANHO_MAXIMO_10;
-import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.TAMANHO_MINIMO_MINIMO_5;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_DATA_CRIACAO_NAO_PODE_SER_ANTES_01_01_1446;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_DATA_CRIACAO_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_DATA_CRIACAO_NAO_PODE_SER_POSTERIOR_AO_DIA_ATUAL;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_RAZAO_SOCIAL_DEVE_TER_MAXIMO_DE_30_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_RAZAO_SOCIAL_DEVE_TER_O_MINIMO_DE_3_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_RAZAO_SOCIAL_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_RAZAO_SOCIAL_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_STATUS_E_OBRIGATORIO;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.REGEX_INSCRICAO_ESTADUAL;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.TAMANHO_1;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.TAMANHO_10;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.TAMANHO_2;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.TAMANHO_3;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.TAMANHO_30;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.TAMANHO_4;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.TAMANHO_5;
+import static br.com.contmatic.prova.utils.constants.EnderecoConstantes.O_ENDERECO_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.CAMPOS_CADASTRO_FUNCIONARIOS_OBRIGATORIO;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.LISTA_FUNCIONARIO_VAZIA;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.NAO_DEVE_EXISTIR_MAIS_DE_10_FUNCIONARIOS_CADASTRADOS;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.NAO_EXISTEM_FUNCIONARIOS_CADASTRADOS;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.O_CAMPO_NOME_FUNCIONARIO_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.CAMPO_SETOR_NULO;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.DEVE_EXISTIR_AO_MENOS_2_SETORES;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.LIMITE_DA_LISTA_SETORES;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.O_CAMPO_SETOR_NAO_PODE_SER_VAZIO;
 import static java.util.Objects.hash;
 
 import java.time.LocalDate;
@@ -39,11 +58,9 @@ import java.util.Set;
 
 import br.com.contmatic.prova.model.auditoria.Auditoria;
 import br.com.contmatic.prova.model.endereco.Endereco;
-import br.com.contmatic.prova.utils.constants.EmpresaConstantes;
+import br.com.contmatic.prova.utils.constants.FuncionarioConstantes;
 
 public class Empresa extends Auditoria {
-
-	private static final String REGEX_INSCRICAO_ESTADUAL = "^[\\d]{5,10}$";
 
 	private String cnpj;
 
@@ -75,8 +92,8 @@ public class Empresa extends Auditoria {
 	public void setInscricaoEstadual(String inscricaoEstadual) {
 		verificaNulo(inscricaoEstadual, A_INSCRICAO_ESTADUAL_NAO_PODE_SER_NULA);
 		verificaValorVazio(inscricaoEstadual,A_INSCRICAO_ESTADUAL_NAO_PODE_SER_VAZIA);
-		verificaTamanhoMinimo(inscricaoEstadual, TAMANHO_MINIMO_MINIMO_5, INSCRICAO_ESTUDAL_DEVE_TER_MINIMO_5_CARACTERES);
-		verificaTamanhoMaximo(inscricaoEstadual, TAMANHO_MAXIMO_10,INSCRICAO_ESTUDAL_DEVE_TER_MAXIMO_10_CARACTERES);
+		verificaTamanhoMinimo(inscricaoEstadual, TAMANHO_5, INSCRICAO_ESTUDAL_DEVE_TER_MINIMO_5_CARACTERES);
+		verificaTamanhoMaximo(inscricaoEstadual, TAMANHO_10,INSCRICAO_ESTUDAL_DEVE_TER_MAXIMO_10_CARACTERES);
 		verificaRegex(inscricaoEstadual, REGEX_INSCRICAO_ESTADUAL,INSCRICAO_ESTADUAL_DEVE_TER_APENAS_NUMERO);
 		verificaCaracteresRepetidos(inscricaoEstadual, INSCRICAO_ESTADUAL_NAO_DEVE_TER_APENAS_CARACTERES_REPETIDOS);
 		this.inscricaoEstadual = inscricaoEstadual;
@@ -93,8 +110,8 @@ public class Empresa extends Auditoria {
 	public void setSituacaoTributaria(String situacaoTributaria) {
 		verificaNulo(situacaoTributaria, A_SITUACAO_TRIBUTARIA_NAO_DEVE_SER_NULA);
 		verificaValorVazio(situacaoTributaria, A_SITUACAO_TRIBUTARIA_NAO_PODE_SER_VAZIA);
-		verificaTamanhoMinimo(situacaoTributaria, TAMANHO_MINIMO_MINIMO_5,A_SITUACAO_TRIBUTARIA_DEVE_TER_NO_MININO_5_CARACTERES);
-		verificaTamanhoMaximo(situacaoTributaria, TAMANHO_MAXIMO_10, A_SITUACAO_TRIBUTARIA_DEVE_TER_NO_MAXIMO_10_CARACTERES);
+		verificaTamanhoMinimo(situacaoTributaria,TAMANHO_5,A_SITUACAO_TRIBUTARIA_DEVE_TER_NO_MININO_5_CARACTERES);
+		verificaTamanhoMaximo(situacaoTributaria, TAMANHO_10, A_SITUACAO_TRIBUTARIA_DEVE_TER_NO_MAXIMO_10_CARACTERES);
 		verificaRegex(situacaoTributaria, REGEX_INSCRICAO_ESTADUAL, A_SITUACAO_TRIBUTARIA_DEVE_TER_APENAS_NUMEROS);
 		verificaCaracteresRepetidos(situacaoTributaria, A_SITUACAO_TRIBUTARIA_NAO_DEVE_TER_APENAS_CARACTERES_REPETIDOS);
 		this.situacaoTributaria = situacaoTributaria;
@@ -105,10 +122,10 @@ public class Empresa extends Auditoria {
 	}
 
 	public void setSetores(Set<Setor> setores) {
-		verificaNulo(setores, O_CAMPO_SETOR_NAO_PODE_SER_NULO);
+		verificaNulo(setores, CAMPO_SETOR_NULO);
 		verificaListaVazia(setores, O_CAMPO_SETOR_NAO_PODE_SER_VAZIO);
-		verificaTamanoMinimoLista(setores, 2, DEVE_EXISTIR_AO_MENOS_2_SETORES); 
-		verificaTamanoMaximoLista(setores, 4, LIMITE_DA_LISTA_SETORES);
+		verificaTamanoMinimoLista(setores, TAMANHO_2, DEVE_EXISTIR_AO_MENOS_2_SETORES); 
+		verificaTamanoMaximoLista(setores, TAMANHO_4, LIMITE_DA_LISTA_SETORES);
 		this.setores = setores;
 	}
 
@@ -117,10 +134,10 @@ public class Empresa extends Auditoria {
 	}
 
 	public void setFuncionarios(Set<Funcionario> funcionarios) {
-		verificaNulo(funcionarios, CAMPOS_CADASTRO_FUNCIONARIOS_OBRIGATORIO);
-		verificaListaVazia(funcionarios, "Não existem funcionarios cadastrados");
-		verificaTamanoMinimoLista(funcionarios, 1, "Deve existir ao menos um setor cadastrado"); 
-		verificaTamanoMaximoLista(funcionarios, 10, "Não podem existir mais de 10 funcionarios cadastrados");
+		verificaNulo(funcionarios, O_CAMPO_NOME_FUNCIONARIO_NAO_PODE_SER_NULO);
+		verificaListaVazia(funcionarios, LISTA_FUNCIONARIO_VAZIA);
+		verificaTamanoMinimoLista(funcionarios,  TAMANHO_1, LISTA_FUNCIONARIO_VAZIA); 
+		verificaTamanoMaximoLista(funcionarios, TAMANHO_10, NAO_DEVE_EXISTIR_MAIS_DE_10_FUNCIONARIOS_CADASTRADOS);
 		this.funcionarios = funcionarios;
 	}
 
@@ -129,17 +146,17 @@ public class Empresa extends Auditoria {
 	}
 
 	public void setDataCriacao(LocalDate dataCriacao) {
-		verificaNulo(dataCriacao, "O campo Data de criação da empresa é obrigatorio");
-		verificaDataMinima(dataCriacao, "A data não pode ser anterior a 01/01/1446");
-		verificaDataMaxima(dataCriacao, "A Data de criação não pode ser posterior ao dia atual.");
+		verificaNulo(dataCriacao, O_CAMPO_DATA_CRIACAO_NAO_PODE_SER_NULO);
+		verificaDataMinima(dataCriacao, O_CAMPO_DATA_CRIACAO_NAO_PODE_SER_ANTES_01_01_1446);
+		verificaDataMaxima(dataCriacao, O_CAMPO_DATA_CRIACAO_NAO_PODE_SER_POSTERIOR_AO_DIA_ATUAL);
 		this.dataCriacao = dataCriacao;
 	}
 
 	public void setRazaoSocial(String razaoSocial) {
-		verificaNulo(razaoSocial, "O campo Razão Social é de preenchimento obrigatorio");
-		verificaValorVazio(razaoSocial, "O campo é de preenchimento obrigatorio");
-		verificaTamanhoMinimo(razaoSocial, 3, "O campo Razão Social deve conter ao menos 3 caracteres");
-		verificaTamanhoMaximo(razaoSocial, 30,"O tamanho máximo do campo Razão Social é de 30 caracteres");
+		verificaNulo(razaoSocial, O_CAMPO_RAZAO_SOCIAL_NAO_PODE_SER_NULO);
+		verificaValorVazio(razaoSocial, O_CAMPO_RAZAO_SOCIAL_NAO_PODE_SER_VAZIO);
+		verificaTamanhoMinimo(razaoSocial, TAMANHO_3, O_CAMPO_RAZAO_SOCIAL_DEVE_TER_O_MINIMO_DE_3_CARACTERES);
+		verificaTamanhoMaximo(razaoSocial, TAMANHO_30, O_CAMPO_RAZAO_SOCIAL_DEVE_TER_MAXIMO_DE_30_CARACTERES);
 		this.razaoSocial = razaoSocial;
 	}
 
@@ -157,7 +174,7 @@ public class Empresa extends Auditoria {
 	}
 
 	public void setEndereco(Set<Endereco> enderecos) {
-		verificaNulo(enderecos, "O endereço é obrigatorio");
+		verificaNulo(enderecos, O_ENDERECO_NAO_PODE_SER_NULO);
 		this.enderecos = enderecos;
 	}
 	
@@ -166,7 +183,7 @@ public class Empresa extends Auditoria {
 	}
 
 	public void setisAtivo(Boolean status) {
-		verificaNulo(status, "O status e´obrigatorio");
+		verificaNulo(status, O_STATUS_E_OBRIGATORIO);
 		this.isAtivo = status;
 	}
 

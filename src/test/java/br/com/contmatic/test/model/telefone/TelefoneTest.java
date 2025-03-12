@@ -1,6 +1,10 @@
 package br.com.contmatic.test.model.telefone;
 
-import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.CAMPO_DDI_DEVE_SER_APENAS_NUERO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.CAMPO_DDI_DEVE_SER_3_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.CAMPO_DDI_DEVE_SER_APENAS_NUMERO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.NUMERO_DDI_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.NUMERO_DDI_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.TIPO_TELEFONE_COMERCIAL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -29,35 +33,35 @@ import br.com.contmatic.prova.model.telefone.Telefone;
 	void nao_deve_aceitar_campo_DDI_nulo() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> telefone.setDdi(null));
-		assertEquals("Número de DDI inválido", erro.getMessage());		
+		assertEquals(NUMERO_DDI_NAO_PODE_SER_NULO, erro.getMessage());		
 	}
 	
 	@Test
 	void nao_deve_aceitar_campo_DDI_vazio() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> telefone.setDdi(""));
-		assertEquals("Número de DDI inválido", erro.getMessage());		
+		assertEquals(NUMERO_DDI_NAO_PODE_SER_VAZIO, erro.getMessage());		
 	}
 	
 	@Test
 	void nao_deve_aceitar_campo_DDI_com_menos_de_3_caracteres() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> telefone.setDdi("21"));
-		assertEquals("O campo DDI deve ser no minimo 3 caracteres", erro.getMessage());		
+		assertEquals(CAMPO_DDI_DEVE_SER_3_CARACTERES, erro.getMessage());		
 	}
 	
 	@Test
 	void nao_deve_aceitar_campo_DDI_com_mais_de_3_caracteres() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> telefone.setDdi("0021"));
-		assertEquals("O tamanho maximo do campo DDI é 3 caracteres", erro.getMessage());		
+		assertEquals(CAMPO_DDI_DEVE_SER_3_CARACTERES, erro.getMessage());		
 	}
 	
 	@Test
-	void campo_DDI_deveaceitarapenasnumeros() {
+	void campo_DDI_deve_aceitar_apenas_numeros() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> telefone.setDdi("03k"));
-		assertEquals(CAMPO_DDI_DEVE_SER_APENAS_NUERO , erro.getMessage());		
+		assertEquals(CAMPO_DDI_DEVE_SER_APENAS_NUMERO , erro.getMessage());		
 	}
 	
 	@Test
@@ -73,8 +77,8 @@ import br.com.contmatic.prova.model.telefone.Telefone;
 	
 	@Test
 	void deve_aceitar_tipo_de_telefone_valido() {
-		telefone.setTipo("Comercial");
-		assertEquals("Comercial", telefone.getTipo());
+		telefone.setTipo(TIPO_TELEFONE_COMERCIAL);
+		assertEquals(TIPO_TELEFONE_COMERCIAL, telefone.getTipo());
 	}
 	
 	@Test

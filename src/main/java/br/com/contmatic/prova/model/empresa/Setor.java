@@ -6,18 +6,23 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanhoMinimo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanoMaximoLista;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanoMinimoLista;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaValorVazio;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.LISTA_FUNCIONARIO_VAZIA;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.O_CAMPO_FUNCIONARIO_DO_SETOR_E_OBRIGATORIO;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.TAMANHO_1;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.TAMANHO_10;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.CAMPO_SETOR_DEVE_TER_MAXIMO_80_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.CAMPO_SETOR_MINIMO_3_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.CAMPO_SETOR_NULO;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.CAMPO_SETOR_VAZIO;
-import static br.com.contmatic.prova.utils.constants.SetorConstantes.LISTA_FUNCIONARIO_VAZIA;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.LISTA_SETOR_COM_MAIS_DE_10_FUNCIONARIOS;
-import static br.com.contmatic.prova.utils.constants.SetorConstantes.O_CAMPO_FUNCIONARIO_DO_SETOR_E_OBRIGATORIO;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.O_CAMPO_CHEFE_DO_SETOR_E_OBRIGATORIO;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.TAMANHO_3;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.TAMANHO_80;
 
 import java.util.List;
 import java.util.Objects;
 
 import br.com.contmatic.prova.model.auditoria.Auditoria;
-import br.com.contmatic.prova.utils.ValidacaoUtils;
-import br.com.contmatic.prova.utils.constants.SetorConstantes;
 
 public class Setor extends Auditoria {
 
@@ -37,10 +42,10 @@ public class Setor extends Auditoria {
 	}
 
 	public void setNome(String nome) {
-		verificaNulo(nome, SetorConstantes.CAMPO_SETOR_NULO);
+		verificaNulo(nome, CAMPO_SETOR_NULO);
 		verificaValorVazio(nome, CAMPO_SETOR_VAZIO);
-		verificaTamanhoMinimo(nome, 3, CAMPO_SETOR_MINIMO_3_CARACTERES);
-		verificaTamanhoMaximo(nome, 80, "O tamanho maximo é de 80 caracteres" );
+		verificaTamanhoMinimo(nome, TAMANHO_3, CAMPO_SETOR_MINIMO_3_CARACTERES);
+		verificaTamanhoMaximo(nome, TAMANHO_80, CAMPO_SETOR_DEVE_TER_MAXIMO_80_CARACTERES  );
 		this.nome = nome;
 	}
 
@@ -49,7 +54,7 @@ public class Setor extends Auditoria {
 	}
 
 	public void setChefe(Funcionario chefe) {
-		verificaNulo(chefe, "O campo Chefe do Setor é obrigatório");
+		verificaNulo(chefe, O_CAMPO_CHEFE_DO_SETOR_E_OBRIGATORIO);
 		this.chefe = chefe;
 	}
 
@@ -59,8 +64,8 @@ public class Setor extends Auditoria {
 
 	public void setFuncionarios(List<Funcionario> funcionarios) {
 		verificaNulo(funcionarios,O_CAMPO_FUNCIONARIO_DO_SETOR_E_OBRIGATORIO);
-		verificaTamanoMinimoLista(funcionarios, 1, LISTA_FUNCIONARIO_VAZIA);
-		verificaTamanoMaximoLista(funcionarios, 10, LISTA_SETOR_COM_MAIS_DE_10_FUNCIONARIOS);
+		verificaTamanoMinimoLista(funcionarios, TAMANHO_1,LISTA_FUNCIONARIO_VAZIA);
+		verificaTamanoMaximoLista(funcionarios, TAMANHO_10, LISTA_SETOR_COM_MAIS_DE_10_FUNCIONARIOS);
 		this.funcionarios = funcionarios;
 	}
 

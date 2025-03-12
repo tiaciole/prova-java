@@ -209,10 +209,9 @@ class AuditoriaTest {
 	}
 
 	@Test
-	@Timeout(value = 100, unit = TimeUnit.MILLISECONDS) // Limite de 100 milissegundos
+	@Timeout(value = 100, unit = TimeUnit.MILLISECONDS) 
 		void test21_teste_com_timeout_passando() throws InterruptedException {
-		// Simula uma operação que leva algum tempo
-		sleep(95); // Dorme por 50 milissegundos
-		assertTrue(true); // O teste passa se terminar dentro do tempo
+		sleep(95); 
+		assertTrue(true); 
 	}
 }

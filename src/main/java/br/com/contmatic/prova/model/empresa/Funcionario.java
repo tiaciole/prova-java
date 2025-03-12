@@ -8,10 +8,34 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanhoMinimo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaValorMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaValorMinimo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaValorVazio;
-import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.REGEX_EMAIL;
-import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.MSG_EMAIL_INVALIDO;
-import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.MSG_TELEFONE_INVALIDO;
-import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.MSG_TELEFONE_VAZIO;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.EMAIL_DEVE_TER_MINIMO_DE_3_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.EMAIL_DEVE_TER_NO_MAXIMO_80_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.FORMATO_EMAIL_INVALIDO;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.MSG_EMAIL_INVALIDO;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.MSG_EMAIL_VAZIO;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.REGEX_EMAIL;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.TAMANHO_3;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.TAMANHO_80;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.TIPO_EMAIL_NULO;
+import static br.com.contmatic.prova.utils.constants.EnderecoConstantes.O_ENDERECO_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.O_CAMPO_DO_FUNCIONARIO_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.O_CAMPO_NOME_DEVE_TER_MINIMO_2_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.O_CAMPO_NOME_FUNCIONARIO_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.O_CAMPO_SALARIO_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.O_CAMPO_SALARIO_NAO_PODE_SER_ZERO;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.O_TAMANHO_MAXIMO_DO_CAMPO_NOME_80_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.O_VALOR_DO_SALARIO_NAO_PODE_SER_MAIOR_QUE_DOIS_MIL;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.TAMANHO_2;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.CAMPO_SETOR_NULO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.MSG_TELEFONE_INVALIDO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.O_CAMPO_TELEFONE_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.O_CAMPO_TELEFONE_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.O_NUMERO_DE_TELEFONE_DEVE_CONTER_APENAS_NUMERO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.O_NUMERO_TELEFONE_DEVE_TER_O_MAXIMO_DE_9_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.O_NUMERO_TELEFONE_DEVE_TER_O_MINIMO_DE_8_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.REGEX_TELEFONE;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.TAMANHO_8;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.TAMANHO_9;
 import static java.math.BigDecimal.valueOf;
 
 import java.math.BigDecimal;
@@ -20,24 +44,22 @@ import java.util.Objects;
 import br.com.contmatic.prova.model.auditoria.Auditoria;
 import br.com.contmatic.prova.model.endereco.Endereco;
 import br.com.contmatic.prova.utils.CpfUtils;
-import br.com.contmatic.prova.utils.constants.FuncionarioConstantes;
 
 public class Funcionario extends Auditoria {
 
 	private String nome;
 
 	private BigDecimal salario;
-	
+
 	private String cpf;
-	
+
 	private Setor setor;
-	
+
 	private Endereco endereco;
 
 	private String telefone;
 
 	private String email;
-	
 
 	public Funcionario(String nome, String cpf) {
 		this.setNome(nome);
@@ -49,50 +71,50 @@ public class Funcionario extends Auditoria {
 	}
 
 	public void setNome(String nome) {
-		verificaNulo(nome, "O campo nome é obrigatorio");
-		verificaValorVazio(nome, "O campo é de preenchimento obrigatório");
-		verificaTamanhoMinimo(nome, 2, "O campo Nome deve ser no minimo 2 caracteres");
-		verificaTamanhoMaximo(nome, 80, "O tamanho maximo do campo nome é 80 caracteres");
+		verificaNulo(nome, O_CAMPO_NOME_FUNCIONARIO_NAO_PODE_SER_NULO);
+		verificaValorVazio(nome, O_CAMPO_DO_FUNCIONARIO_NAO_PODE_SER_VAZIO);
+		verificaTamanhoMinimo(nome, TAMANHO_2, O_CAMPO_NOME_DEVE_TER_MINIMO_2_CARACTERES);
+		verificaTamanhoMaximo(nome, 80, O_TAMANHO_MAXIMO_DO_CAMPO_NOME_80_CARACTERES);
 		this.nome = nome;
 	}
-	
+
 	public BigDecimal getSalario() {
 		return salario;
 	}
-	
+
 	public void setSalario(BigDecimal salario) {
-		verificaNulo(salario, "O campo sálario é obrigatorio");
-		verificaValorMinimo(salario, valueOf(0),"Valor do salario não pode ser zero");
-		verificaValorMaximo(salario, valueOf(2000), "O valor não pode ser maior que 2.000,00");
+		verificaNulo(salario, O_CAMPO_SALARIO_NAO_PODE_SER_NULO);
+		verificaValorMinimo(salario, valueOf(0), O_CAMPO_SALARIO_NAO_PODE_SER_ZERO);
+		verificaValorMaximo(salario, valueOf(2000), O_VALOR_DO_SALARIO_NAO_PODE_SER_MAIOR_QUE_DOIS_MIL);
 		this.salario = salario;
 	}
-	
+
 	public String getCpf() {
 		return cpf;
 	}
-	
+
 	public void setCpf(String cpf) {
 		CpfUtils.isCPF(cpf);
 		this.cpf = cpf;
 	}
-	
+
 	public Setor getSetor() {
 		return setor;
 	}
-	
+
 	public void setSetor(Setor setor) {
-		verificaNulo(setor, "O campo é de preencimento obrigatorio");
+		verificaNulo(setor, CAMPO_SETOR_NULO);
 		this.setor = setor;
 	}
-	
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
-	
+
 	public void setEndereco(Endereco endereco) {
-		verificaNulo(endereco, "Endereço inválido"); // tem que ser o teste pela classe Endereço?
+		verificaNulo(endereco, O_ENDERECO_NAO_PODE_SER_NULO);
 		this.endereco = endereco;
-		
+
 	}
 
 	public String getTelefone() {
@@ -100,12 +122,12 @@ public class Funcionario extends Auditoria {
 	}
 
 	public void setTelefone(String telefone) {
-		verificaNulo(telefone, MSG_TELEFONE_INVALIDO);
-		verificaValorVazio(telefone, MSG_TELEFONE_VAZIO);
+		verificaNulo(telefone, O_CAMPO_TELEFONE_NAO_PODE_SER_NULO);
+		verificaValorVazio(telefone, O_CAMPO_TELEFONE_NAO_PODE_SER_VAZIO);
 		verificaCaracteresRepetidos(telefone, MSG_TELEFONE_INVALIDO);
-		verificaTamanhoMinimo(telefone, 8, "O numero do telefone deve conter no minimo 8 caracteres"); 
-		verificaTamanhoMaximo(telefone, 10, "O campo telefone deve ter no máximo 10 caracteres");
-		verificaRegex(telefone, "^[\\d]{8,10}$", "O Campo Telefone deve conter apenas números");
+		verificaTamanhoMinimo(telefone, TAMANHO_8, O_NUMERO_TELEFONE_DEVE_TER_O_MINIMO_DE_8_CARACTERES);
+		verificaTamanhoMaximo(telefone, TAMANHO_9, O_NUMERO_TELEFONE_DEVE_TER_O_MAXIMO_DE_9_CARACTERES);
+		verificaRegex(telefone, REGEX_TELEFONE, O_NUMERO_DE_TELEFONE_DEVE_CONTER_APENAS_NUMERO);
 		this.telefone = telefone;
 	}
 
@@ -114,12 +136,12 @@ public class Funcionario extends Auditoria {
 	}
 
 	public void setEmail(String email) {
-		verificaNulo(email, "Email inválido");
-		verificaValorVazio(email, FuncionarioConstantes.MSG_EMAIL_VAZIO);
+		verificaNulo(email, TIPO_EMAIL_NULO);
+		verificaValorVazio(email, MSG_EMAIL_VAZIO);
 		verificaCaracteresRepetidos(email, MSG_EMAIL_INVALIDO);
-		verificaTamanhoMinimo(email, 3, "O numero do telefone deve conter no minimo 2 caracteres"); 
-		verificaTamanhoMaximo(email, 80, "O campo email deve ter no máximo 80 caracteres");
-		verificaRegex(email, REGEX_EMAIL, "O Campo Email deve conter arroba");
+		verificaTamanhoMinimo(email, TAMANHO_3, EMAIL_DEVE_TER_MINIMO_DE_3_CARACTERES);
+		verificaTamanhoMaximo(email, TAMANHO_80, EMAIL_DEVE_TER_NO_MAXIMO_80_CARACTERES);
+		verificaRegex(email, REGEX_EMAIL, FORMATO_EMAIL_INVALIDO);
 		this.email = email;
 	}
 

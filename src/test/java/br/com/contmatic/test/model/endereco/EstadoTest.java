@@ -1,5 +1,12 @@
 package br.com.contmatic.test.model.endereco;
 
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.NOME_COM_MAIS_DE_80_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.NOME_DO_ESTADO_O_MINIMO_E_2_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.O_CAMPO_ESTADO_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.O_CAMPO_ESTADO_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.O_TAMANHO_MAXIMO_NO_CAMPO_NOME_ESTADO_E_80_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.SAO_PAULO;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.SP;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -10,11 +17,9 @@ import org.junit.jupiter.api.Test;
 
 import br.com.contmatic.prova.model.empresa.Funcionario;
 import br.com.contmatic.prova.model.endereco.Estado;
-import br.com.contmatic.prova.utils.constants.EmpresaConstantes;
 
  class EstadoTest {
 
-	private static final String MAIS_DE_80_CARACTERES = "444CudydddwTAYfxyeM3cGoEJXXqNBOZ8ndNKnqStqMYEGojYAvui6O7XNy5LnHQmMm7tLbYxR29eFIV7fgM8S";
 
 	Estado estado;
 	
@@ -26,56 +31,56 @@ import br.com.contmatic.prova.utils.constants.EmpresaConstantes;
 	
 	@Test
 	void deve_aceitar_nome_do_estado_valido() {
-		estado.setNome("SÃO PAULO");
-		assertEquals("SÃO PAULO", estado.getNome());
+		estado.setNome(SAO_PAULO);
+		assertEquals(SAO_PAULO, estado.getNome());
 	}
 
 	@Test
 	void deve_aceitar_uf_valida() {
-		estado.setUf("SP");
-		assertEquals("SP", estado.getUf());
+		estado.setUf(SP);
+		assertEquals(SP, estado.getUf());
 	}
 
 	@Test
 	void nao_deve_aceitar_nome_de_estado_nulo() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> estado.setNome(null));
-		assertEquals(EmpresaConstantes.O_CAMPO_NOME_DO_ESTADO_E_OBRIGATORIO, erro.getMessage());
+		assertEquals(O_CAMPO_ESTADO_NAO_PODE_SER_NULO, erro.getMessage());
 	}
 
 	@Test
-	void naodeveaceitarnomedeestadovazio() {
+	void nao_deve_aceitar_nome_de_estado_vazio() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> estado.setNome(""));
-		assertEquals(EmpresaConstantes.O_CAMPO_NOME_DO_ESTADO_E_OBRIGATORIO, erro.getMessage());
+		assertEquals(O_CAMPO_ESTADO_NAO_PODE_SER_VAZIO, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_nome_de_estado_com_menos_de_2_caracteres() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> estado.setNome("q"));
-		assertEquals("O tamanho minimo é de 2 caracteres", erro.getMessage());
+		assertEquals(NOME_DO_ESTADO_O_MINIMO_E_2_CARACTERES, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_nome_de_estado_com_mais_de_80_caracteres() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> estado.setNome(MAIS_DE_80_CARACTERES));
-		assertEquals("O tamanho máximo é de 80 caracteres", erro.getMessage());
+				() -> estado.setNome(NOME_COM_MAIS_DE_80_CARACTERES));
+		assertEquals(O_TAMANHO_MAXIMO_NO_CAMPO_NOME_ESTADO_E_80_CARACTERES, erro.getMessage());
 	}
 	
 	@Test
 	void deve_retornar_mesmo_valor_hascode() {
-		Estado estado2= new Estado("SP");
+		Estado estado2= new Estado(SP);
 		assertEquals(estado.hashCode(), estado2.hashCode());
 	}
 	
 	@Test
 	void deve_retornar_verdadeiro_para_objetos_iguais() {
-		Estado estado2= new Estado("SP");
+		Estado estado2= new Estado(SP);
 		assertEquals(estado, estado2);
 	}
 	
 	@Test
 	void deve_retornar_falso_para_equals_comparado_com_nulo() {
-		Estado estado2= new Estado("SP");
+		Estado estado2= new Estado(SP);
 		assertFalse(estado2.equals(null));
 	}
 	

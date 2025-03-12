@@ -5,11 +5,35 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaRegex;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanhoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanhoMinimo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaValorVazio;
-import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.CAMPO_DDI_DEVE_SER_APENAS_NUERO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.CAMPO_DDD_DEVE_SER_2_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.CAMPO_DDD_DEVE_SER_APENAS_NUMERO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.CAMPO_DDI_DEVE_SER_3_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.CAMPO_DDI_DEVE_SER_APENAS_NUMERO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.NUMERO_DDD_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.NUMERO_DDD_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.NUMERO_DDI_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.NUMERO_DDI_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.O_CAMPO_TELEFONE_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.O_CAMPO_TELEFONE_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.O_CAMPO_TIPO_DE_TELEFONE_ACEITA_APENAS_TEXTO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.O_NUMERO_DE_TELEFONE_DEVE_CONTER_APENAS_NUMERO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.O_NUMERO_TELEFONE_DEVE_TER_O_MAXIMO_DE_9_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.O_NUMERO_TELEFONE_DEVE_TER_O_MINIMO_DE_8_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.O_TIPO_DE_TELEFONE_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.O_TIPO_DE_TELEFONE_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.REGEX_DDD;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.REGEX_DDI;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.REGEX_TELEFONE;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.REGEX_TIPO_TELEFONE_APENAS_LETRA;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.TAMANHO_2;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.TAMANHO_3;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.TAMANHO_8;
+import static br.com.contmatic.prova.utils.constants.TelefoneConstantes.TAMANHO_9;
 
 import java.util.Objects;
 
 import br.com.contmatic.prova.model.auditoria.Auditoria;
+import br.com.contmatic.prova.utils.constants.TelefoneConstantes;
 
 public class Telefone extends Auditoria{
 	
@@ -31,42 +55,42 @@ public class Telefone extends Auditoria{
 		return ddi;
 	}
 	public void setDdi(String ddi) {	
-		verificaNulo(ddi, "Número de DDI inválido");
-		verificaValorVazio(ddi, "Número de DDI inválido");
-		verificaTamanhoMinimo(ddi, 3, "O campo DDI deve ser no minimo 3 caracteres");
-		verificaTamanhoMaximo(ddi, 3, "O tamanho maximo do campo DDI é 3 caracteres");
-		verificaRegex(ddi, "^[\\d]{3}$", CAMPO_DDI_DEVE_SER_APENAS_NUERO);
+		verificaNulo(ddi, NUMERO_DDI_NAO_PODE_SER_NULO);
+		verificaValorVazio(ddi, NUMERO_DDI_NAO_PODE_SER_VAZIO);
+		verificaTamanhoMinimo(ddi, TAMANHO_3, CAMPO_DDI_DEVE_SER_3_CARACTERES);
+		verificaTamanhoMaximo(ddi, TAMANHO_3, CAMPO_DDI_DEVE_SER_3_CARACTERES);
+		verificaRegex(ddi, REGEX_DDI, CAMPO_DDI_DEVE_SER_APENAS_NUMERO);
 		this.ddi = ddi;
 	}
 	public String getDdd() {
 		return ddd;
 	}
 	public void setDdd(String ddd) {
-		verificaNulo(ddd, "Número de DDD nulo");
-		verificaValorVazio(ddd, "Número de DDD inválido");
-		verificaTamanhoMinimo(ddd, 2, "O campo DDD deve ser no minimo 2 caracteres");
-		verificaTamanhoMaximo(ddd, 2, "O tamanho maximo do campo DDD é 2 caracteres");
-		verificaRegex(ddd, "^[\\d]{2}$", "O campo DDD aceita apenas número");
+		verificaNulo(ddd, NUMERO_DDD_NAO_PODE_SER_NULO);
+		verificaValorVazio(ddd, NUMERO_DDD_NAO_PODE_SER_VAZIO);
+		verificaTamanhoMinimo(ddd, TAMANHO_2, CAMPO_DDD_DEVE_SER_2_CARACTERES);
+		verificaTamanhoMaximo(ddd, TAMANHO_2, CAMPO_DDD_DEVE_SER_2_CARACTERES);
+		verificaRegex(ddd, REGEX_DDD, CAMPO_DDD_DEVE_SER_APENAS_NUMERO);
 		this.ddd = ddd;
 	}
 	public String getNumero() {
 		return numero;
 	}
 	public void setNumero(String numero) {
-		verificaNulo(numero, "Número do telefone nulo");
-		verificaValorVazio(numero, "Número do telefone inválido");
-		verificaTamanhoMinimo(numero, 8, "Numero do telefone dever o minimo de 8 caracteres");
-		verificaTamanhoMaximo(numero, 9, "Número do telefone deve conter o maxio de 9 caraceteres");
-		verificaRegex(numero, "^[\\d]{8,9}$", "O campo telefone aceita apenas número");
+		verificaNulo(numero, O_CAMPO_TELEFONE_NAO_PODE_SER_NULO);
+		verificaValorVazio(numero, O_CAMPO_TELEFONE_NAO_PODE_SER_VAZIO);
+		verificaTamanhoMinimo(numero, TAMANHO_8, O_NUMERO_TELEFONE_DEVE_TER_O_MINIMO_DE_8_CARACTERES);
+		verificaTamanhoMaximo(numero, TAMANHO_9, O_NUMERO_TELEFONE_DEVE_TER_O_MAXIMO_DE_9_CARACTERES);
+		verificaRegex(numero, REGEX_TELEFONE, O_NUMERO_DE_TELEFONE_DEVE_CONTER_APENAS_NUMERO);
 		this.numero = numero;
 	}
 	public String getTipo() {
 		return tipo;
 	}
 	public void setTipo(String tipo) {
-		verificaNulo(numero, "Tipo do telefone nulo");
-		verificaValorVazio(numero, "Número do telefone inválido");
-		verificaRegex(tipo, "^[a-zA-Z]+$", "O Campo tipo aceita apenas texto");
+		verificaNulo(numero, O_TIPO_DE_TELEFONE_NAO_PODE_SER_NULO);
+		verificaValorVazio(numero, O_TIPO_DE_TELEFONE_NAO_PODE_SER_VAZIO);
+		verificaRegex(tipo, REGEX_TIPO_TELEFONE_APENAS_LETRA, O_CAMPO_TIPO_DE_TELEFONE_ACEITA_APENAS_TEXTO);
 		this.tipo = tipo;
 	}
 	

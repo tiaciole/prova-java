@@ -5,17 +5,24 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaRegex;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanhoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanhoMinimo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaValorVazio;
-import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_NOME_DO_ESTADO_E_OBRIGATORIO;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.CAMPO_UF_MAXIMO_E_MAXIMO_DE_2_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.CAMPO_UF_MINIMO_2_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.NOME_DO_ESTADO_O_MINIMO_E_2_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.O_CAMPO_ESTADO_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.O_CAMPO_ESTADO_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.O_CAMPO_UF_DEVE_SER_APENAS_LETRAS;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.O_CAMPO_UF_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.O_CAMPO_UF_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.O_TAMANHO_MAXIMO_NO_CAMPO_NOME_ESTADO_E_80_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.REGEX_UF;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.TAMANHO_2;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.TAMANHO_80;
 
 import java.util.Objects;
 
 import br.com.contmatic.prova.model.auditoria.Auditoria;
 
 public class Estado extends Auditoria {
-
-	private static final int QUANTIDADE_MINIMA_80_CARACTERES = 80;
-
-	private static final int QUANTIDADE_MINIMA_2 = 2;
 
 	private String nome;
 
@@ -31,10 +38,10 @@ public class Estado extends Auditoria {
 	}
 
 	public void setNome(String nome) {
-		verificaNulo(nome, O_CAMPO_NOME_DO_ESTADO_E_OBRIGATORIO);
-		verificaValorVazio(nome, O_CAMPO_NOME_DO_ESTADO_E_OBRIGATORIO);
-		verificaTamanhoMinimo(nome, QUANTIDADE_MINIMA_2, "O tamanho minimo é de 2 caracteres");
-		verificaTamanhoMaximo(nome, QUANTIDADE_MINIMA_80_CARACTERES, "O tamanho máximo é de 80 caracteres");
+		verificaNulo(nome, O_CAMPO_ESTADO_NAO_PODE_SER_NULO);
+		verificaValorVazio(nome, O_CAMPO_ESTADO_NAO_PODE_SER_VAZIO);
+		verificaTamanhoMinimo(nome, TAMANHO_2, NOME_DO_ESTADO_O_MINIMO_E_2_CARACTERES);
+		verificaTamanhoMaximo(nome, TAMANHO_80, O_TAMANHO_MAXIMO_NO_CAMPO_NOME_ESTADO_E_80_CARACTERES);
 		this.nome = nome;
 	}
 
@@ -43,11 +50,11 @@ public class Estado extends Auditoria {
 	}
 	
 	public void setUf(String uf) {
-		verificaNulo(uf, "O campo UF é obrigatório");
-		verificaValorVazio(uf, "O campo UF é obrigatório");
-		verificaTamanhoMinimo(uf, QUANTIDADE_MINIMA_2, "O tamanho minimo é de 2 caracteres");
-		verificaTamanhoMaximo(uf, QUANTIDADE_MINIMA_2, "ufmanho máximo é de 2 caracteres");
-		verificaRegex(uf, "[A-zà-ú\\s]+", "O campo Uf deve ser apenas letras");
+		verificaNulo(uf, O_CAMPO_UF_NAO_PODE_SER_NULO );
+		verificaValorVazio(uf,O_CAMPO_UF_NAO_PODE_SER_VAZIO );
+		verificaTamanhoMinimo(uf, TAMANHO_2, CAMPO_UF_MINIMO_2_CARACTERES);
+		verificaTamanhoMaximo(uf, TAMANHO_2, CAMPO_UF_MAXIMO_E_MAXIMO_DE_2_CARACTERES);
+		verificaRegex(uf, REGEX_UF , O_CAMPO_UF_DEVE_SER_APENAS_LETRAS);
 		this.uf = uf;
 	}
 

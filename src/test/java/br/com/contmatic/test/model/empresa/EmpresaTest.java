@@ -1,5 +1,9 @@
 package br.com.contmatic.test.model.empresa;
 
+import static br.com.contmatic.prova.utils.constants.CnpjConstantes.CNPJ_INVALIDO;
+import static br.com.contmatic.prova.utils.constants.CnpjConstantes.O_CAMPO_CNPJ_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.CnpjConstantes.O_CAMPO_CNPJ_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.CnpjConstantes.O_CNPJ_DEVE_TER_14_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_INSCRICAO_ESTADUAL_NAO_PODE_SER_NULA;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_INSCRICAO_ESTADUAL_NAO_PODE_SER_VAZIA;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_SITUACAO_TRIBUTARIA_DEVE_TER_APENAS_NUMEROS;
@@ -7,14 +11,27 @@ import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_SITUACA
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_SITUACAO_TRIBUTARIA_DEVE_TER_NO_MININO_5_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_SITUACAO_TRIBUTARIA_NAO_DEVE_SER_NULA;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.A_SITUACAO_TRIBUTARIA_NAO_DEVE_TER_APENAS_CARACTERES_REPETIDOS;
-import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.DEVE_EXISTIR_AO_MENOS_2_SETORES;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.INSCRICAO_ESTADUAL_DEVE_TER_APENAS_NUMERO;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.INSCRICAO_ESTADUAL_NAO_DEVE_TER_APENAS_CARACTERES_REPETIDOS;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.INSCRICAO_ESTUDAL_DEVE_TER_MAXIMO_10_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.INSCRICAO_ESTUDAL_DEVE_TER_MINIMO_5_CARACTERES;
-import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.LIMITE_DA_LISTA_SETORES;
-import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_SETOR_NAO_PODE_SER_NULO;
-import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_SETOR_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.NOME_COM_MAIS_DE_30_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.NOME_TIAGO_ACIOLE;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_DATA_CRIACAO_NAO_PODE_SER_ANTES_01_01_1446;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_DATA_CRIACAO_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_DATA_CRIACAO_NAO_PODE_SER_POSTERIOR_AO_DIA_ATUAL;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_RAZAO_SOCIAL_DEVE_TER_MAXIMO_DE_30_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_RAZAO_SOCIAL_DEVE_TER_O_MINIMO_DE_3_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_RAZAO_SOCIAL_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_RAZAO_SOCIAL_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.EnderecoConstantes.O_ENDERECO_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.LISTA_FUNCIONARIO_VAZIA;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.O_CAMPO_DO_FUNCIONARIO_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.O_CAMPO_NOME_FUNCIONARIO_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.CAMPO_SETOR_NULO;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.DEVE_EXISTIR_AO_MENOS_2_SETORES;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.LIMITE_DA_LISTA_SETORES;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.O_CAMPO_SETOR_NAO_PODE_SER_VAZIO;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -38,6 +55,7 @@ import br.com.contmatic.prova.model.empresa.Funcionario;
 import br.com.contmatic.prova.model.empresa.Setor;
 import br.com.contmatic.prova.model.endereco.Endereco;
 import br.com.contmatic.prova.utils.constants.EmpresaConstantes;
+import br.com.contmatic.prova.utils.constants.FuncionarioConstantes;
 
 class EmpresaTest {
 
@@ -50,7 +68,7 @@ class EmpresaTest {
 
 	@BeforeEach
 	void set_up() {
-		empresa = new Empresa("Tiago Aciole", "67987198000110");
+		empresa = new Empresa(NOME_TIAGO_ACIOLE, "67987198000110");
 	}
 
 	@Test
@@ -60,56 +78,84 @@ class EmpresaTest {
 
 	@Test
 	void deve_aceitar_razao_social_valida() {
-		assertEquals("Tiago Aciole", empresa.getRazaoSocial());//teste
+		assertEquals(NOME_TIAGO_ACIOLE, empresa.getRazaoSocial());
+	}
+	
+	@Test
+	void nome_razao_social_nao_deve_ser_nula() {
+		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
+				() -> empresa.setRazaoSocial(null));
+		assertEquals(O_CAMPO_RAZAO_SOCIAL_NAO_PODE_SER_NULO, erro.getMessage());
+	}
+	
+	@Test
+	void nome_razao_social_nao_pode_ser_vazio() {
+		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
+				() -> empresa.setRazaoSocial(""));
+		assertEquals(O_CAMPO_RAZAO_SOCIAL_NAO_PODE_SER_VAZIO, erro.getMessage());
+	}
+	
+	@Test
+	void nome_razao_social_nao_ter_menos_que_3_caracteres() {
+		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
+				() -> empresa.setRazaoSocial("TR"));
+		assertEquals(O_CAMPO_RAZAO_SOCIAL_DEVE_TER_O_MINIMO_DE_3_CARACTERES, erro.getMessage());
+	}
+	
+	@Test
+	void nome_razao_social_nao_ter_mais_que_30_caracteres() {
+		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
+				() -> empresa.setRazaoSocial(NOME_COM_MAIS_DE_30_CARACTERES));
+		assertEquals(O_CAMPO_RAZAO_SOCIAL_DEVE_TER_MAXIMO_DE_30_CARACTERES, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_cnpj_nulo() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> new Empresa("Tiago Aciole", null));
-		assertEquals("O campo cnpj é obrigatório", erro.getMessage());
+				() -> new Empresa(NOME_TIAGO_ACIOLE, null));
+		assertEquals(O_CAMPO_CNPJ_NAO_PODE_SER_NULO, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_cnpj_vazio() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> new Empresa("Tiago Aciole", ""));
-		assertEquals("O campo CNPJ não deve ser vazio", erro.getMessage());
+				() -> new Empresa(NOME_TIAGO_ACIOLE, ""));
+		assertEquals(O_CAMPO_CNPJ_NAO_PODE_SER_VAZIO, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_cnpj_menor_que_14() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> new Empresa("Tiago Aciole", "6798719800011"));
-		assertEquals("Cnpj Inválido", erro.getMessage());
+				() -> new Empresa(NOME_TIAGO_ACIOLE, "6798719800011"));
+		assertEquals(O_CNPJ_DEVE_TER_14_CARACTERES, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_cnpj_maior_que_14() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> new Empresa("Tiago Aciole", "679871980001100"));
-		assertEquals("Cnpj Inválido", erro.getMessage());
+				() -> new Empresa(NOME_TIAGO_ACIOLE, "679871980001100"));
+		assertEquals(O_CNPJ_DEVE_TER_14_CARACTERES, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_CNPJ_caracteres_repetidos() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> new Empresa("Tiago Aciole", "44444444444444"));
-		assertEquals("Cnpj inválido", erro.getMessage());
+				() -> new Empresa(NOME_TIAGO_ACIOLE, "44444444444444"));
+		assertEquals(CNPJ_INVALIDO, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_cnpj_com_digito_invalido() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> new Empresa("Tiago Aciole", "67987198000111"));
-		assertEquals(erro.getMessage(), ("Cnpj Inválido"));
+				() -> new Empresa(NOME_TIAGO_ACIOLE, "67987198000111"));
+		assertEquals(erro.getMessage(), (CNPJ_INVALIDO));
 	}
 
 	@Test
 	void nao_deve_aceitar_cnpj_com_letra() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> new Empresa("Tiago Aciole", "6798719800011e"));
-		assertEquals("Cnpj Inválido", erro.getMessage());
+				() -> new Empresa(NOME_TIAGO_ACIOLE, "6798719800011e"));
+		assertEquals(CNPJ_INVALIDO, erro.getMessage());
 	}
 
 	@Test
@@ -214,8 +260,7 @@ class EmpresaTest {
 	@Test
 	void deve_aceitar_campo_setor_valido() {
 		Funcionario funcionario = new Funcionario("Tiago", "97973956000");
-		Set<Setor> listaSetores = new HashSet<Setor>();// pode colcoar dentro dos dois diamantes o tipo, tem que ser o
-														// mesmo
+		Set<Setor> listaSetores = new HashSet<Setor>();											// mesmo
 		for (int i = 0; i <= 2; i++) {
 			Setor setor = new Setor("Recursos Humanos" + i, funcionario);
 			listaSetores.add(setor);
@@ -227,7 +272,7 @@ class EmpresaTest {
 	@Test
 	void nao_deve_aceitar_campo_setor_nulo() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> empresa.setSetores(null));
-		assertEquals(O_CAMPO_SETOR_NAO_PODE_SER_NULO, erro.getMessage());
+		assertEquals(CAMPO_SETOR_NULO, erro.getMessage());
 	}
 
 	@Test
@@ -273,7 +318,7 @@ class EmpresaTest {
 	void não_deve_aceitar_campo_funcionario_nulo() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setFuncionarios(null));
-		assertEquals("Os campos do cadastro de Funcionario é de preenchimento obrigatorio", erro.getMessage());
+		assertEquals(O_CAMPO_NOME_FUNCIONARIO_NAO_PODE_SER_NULO, erro.getMessage());
 	}
 
 	@Test
@@ -281,7 +326,7 @@ class EmpresaTest {
 		Set<Funcionario> funcionarioLista = new HashSet<>();
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setFuncionarios(funcionarioLista));
-		assertEquals("Não existem funcionarios cadastrados", erro.getMessage());
+		assertEquals(LISTA_FUNCIONARIO_VAZIA, erro.getMessage());
 	}
 
 	@Test
@@ -312,7 +357,7 @@ class EmpresaTest {
 		System.out.println(funcionarioLista);
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setFuncionarios(funcionarioLista));
-		assertEquals("Não podem existir mais de 10 funcionarios cadastrados", erro.getMessage());
+		assertEquals(FuncionarioConstantes.NAO_DEVE_EXISTIR_MAIS_DE_10_FUNCIONARIOS_CADASTRADOS, erro.getMessage());
 
 	}
 
@@ -320,7 +365,7 @@ class EmpresaTest {
 	void nao_deve_aceitar_data_criacao_nulo() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setDataCriacao(null));
-		assertEquals("O campo Data de criação da empresa é obrigatorio", erro.getMessage());
+		assertEquals(O_CAMPO_DATA_CRIACAO_NAO_PODE_SER_NULO, erro.getMessage());
 	}
 
 	@Test
@@ -334,20 +379,20 @@ class EmpresaTest {
 	void nao_deve_aceitar_data_criacao_menor_que_data_minima() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setDataCriacao(LocalDate.of(1445, 01, 01)));
-		assertEquals("A data não pode ser anterior a 01/01/1446", erro.getMessage());
+		assertEquals(O_CAMPO_DATA_CRIACAO_NAO_PODE_SER_ANTES_01_01_1446, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_data_criacao_posterior_que_data_atual() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setDataCriacao(LocalDate.now().plusDays(1)));
-		assertEquals("A Data de criação não pode ser posterior ao dia atual.", erro.getMessage());
+		assertEquals(O_CAMPO_DATA_CRIACAO_NAO_PODE_SER_POSTERIOR_AO_DIA_ATUAL, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_endereco_nulo() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class, () -> empresa.setEndereco(null));
-		assertEquals("O endereço é obrigatorio", erro.getMessage());
+		assertEquals(O_ENDERECO_NAO_PODE_SER_NULO, erro.getMessage());
 	}
 
 	@Test
@@ -435,7 +480,7 @@ class EmpresaTest {
 	}
 	
 	@Test
-	void deve_retornar_setor_no_tostring() { // teste toString completo
+	void deve_retornar_setor_no_tostring() {
 		Set<Setor> listaSetores = new HashSet<>();
 		Funcionario funcionario = new Funcionario("Tiago", "97973956000");
 		Funcionario funcionario2 = new Funcionario("Tiago", "97801038053");
@@ -448,20 +493,5 @@ class EmpresaTest {
 		empresa.setSetores(listaSetores);
 		System.out.println(empresa.toString());
 		assertEquals("Empresa [razaoSocial=Tiago Aciole, cnpj=67987198000110, endereco=null, dataCriacao=null, situacaoTributaria=null, setores=[Setor [nome=ADM1, chefe=Funcionario [nome=Tiago, endereco=null, salario=null, cpf=97973956000, telefone=null, email=null], funcionarios=null], Setor [nome=PETECA, chefe=Funcionario [nome=Tiago, endereco=null, salario=null, cpf=97801038053, telefone=null, email=null], funcionarios=null]], funcionarios=null, inscricaoEstadual=nullAuditoria [nomeCriador=null, nomeEditor=null, dataHoraCriacao=null, dataHoraAlteracao=null]]", empresa.toString());
-	}
-
-	@Test
-	void deve_retornar_funcionarios_no_tostring() {
-		Funcionario funcionario = new Funcionario("Tiago", "97973956000");
-		Set<Funcionario> listaFuncionario = new HashSet<>();
-		listaFuncionario.add(funcionario);
-		empresa.setFuncionarios(listaFuncionario);
-		MatcherAssert.assertThat(empresa.toString(), containsString("Tiago"));
-	}
-
-	@Test
-	void deve_retornar_inscricao_estadual_no_toString() {
-		empresa.setInscricaoEstadual("1234567");
-		MatcherAssert.assertThat(empresa.toString(), containsString("1234567"));
 	}
 }

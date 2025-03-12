@@ -1,14 +1,15 @@
 package br.com.contmatic.test.model.empresa;
 
+import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.LISTA_FUNCIONARIO_VAZIA;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.CAMPO_FUNCIONARIO_OBRIGATORIO;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.CAMPO_SETOR_MINIMO_3_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.CAMPO_SETOR_VAZIO;
-import static br.com.contmatic.prova.utils.constants.SetorConstantes.LISTA_FUNCIONARIO_VAZIA;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.LISTA_SETOR_COM_MAIS_DE_10_FUNCIONARIOS;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.NOME_SETOR_ADM;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.NOME_TIAGO;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.NUMERO_CPF_TIAGO;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.OITENTA_E_UM_CARACRETES;
+import static br.com.contmatic.prova.utils.constants.SetorConstantes.O_CAMPO_SETOR_NAO_PODE_SER_VAZIO;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.TOSTRING_SETOR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -22,6 +23,7 @@ import org.junit.jupiter.api.Test;
 
 import br.com.contmatic.prova.model.empresa.Funcionario;
 import br.com.contmatic.prova.model.empresa.Setor;
+import br.com.contmatic.prova.utils.constants.FuncionarioConstantes;
 import br.com.contmatic.prova.utils.constants.SetorConstantes;
 
 class SetorTest {

@@ -4,12 +4,19 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaNulo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanhoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanhoMinimo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaValorVazio;
+import static br.com.contmatic.prova.utils.constants.CidadeConstantes.CAMPO_NOME_MAXIMO_80_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.CidadeConstantes.CAMPO_NOME_MINIMO_2_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.CidadeConstantes.O_CAMPO_NOME_NAO_PODE_SER_NULO;
 import static br.com.contmatic.prova.utils.constants.CidadeConstantes.O_CAMPO_NOME_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.CidadeConstantes.TAMANHO_2;
+import static br.com.contmatic.prova.utils.constants.CidadeConstantes.TAMANHO_80;
+import static br.com.contmatic.prova.utils.constants.EstadoConstantes.O_CAMPO_ESTADO_NAO_PODE_SER_NULO;
 
 import java.util.Objects;
 
 import br.com.contmatic.prova.model.auditoria.Auditoria;
+import br.com.contmatic.prova.utils.constants.CidadeConstantes;
+import br.com.contmatic.prova.utils.constants.EstadoConstantes;
 
 public class Cidade extends Auditoria {
 
@@ -29,8 +36,8 @@ public class Cidade extends Auditoria {
 	public void setNome(String nome) {
 		verificaNulo(nome, O_CAMPO_NOME_NAO_PODE_SER_NULO);
 		verificaValorVazio(nome, O_CAMPO_NOME_NAO_PODE_SER_VAZIO);
-		verificaTamanhoMinimo(nome, 2, "O tamanho minimo é de 2 caracteres");
-		verificaTamanhoMaximo(nome, 80, "O tamanho máximo é de 80 caracteres");
+		verificaTamanhoMinimo(nome, TAMANHO_2, CAMPO_NOME_MINIMO_2_CARACTERES);
+		verificaTamanhoMaximo(nome, TAMANHO_80, CAMPO_NOME_MAXIMO_80_CARACTERES);
 		this.nome = nome;
 	}
 
@@ -39,7 +46,7 @@ public class Cidade extends Auditoria {
 	}
 
 	public void setEstado(Estado estado) {
-		verificaNulo(estado, "O preenchimento do Estado é obrigatório");
+		verificaNulo(estado, O_CAMPO_ESTADO_NAO_PODE_SER_NULO);
 		this.estado = estado;
 	}
 

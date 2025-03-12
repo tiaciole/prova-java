@@ -7,10 +7,13 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanhoMinimo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaValorVazio;
 import static br.com.contmatic.prova.utils.constants.EmailConstantes.EMAIL_DEVE_TER_MAXIMO_DE_50_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.EmailConstantes.EMAIL_DEVE_TER_MINIMO_DE_3_CARACTERES;
-import static br.com.contmatic.prova.utils.constants.EmailConstantes.EMAIL_NULO_INVALIDO;
-import static br.com.contmatic.prova.utils.constants.EmailConstantes.EMAIL_VAZIO_INVÁLIDO;
-import static br.com.contmatic.prova.utils.constants.EmailConstantes.FORMATO_EMAIL_INVALIDO;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.MSG_EMAIL_INVALIDO;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.MSG_EMAIL_VAZIO;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.REGEX_EMAIL;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.TAMANHO_3;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.TAMANHO_50;
 import static br.com.contmatic.prova.utils.constants.EmailConstantes.TIPO_EMAIL_NULO;
+import static br.com.contmatic.prova.utils.constants.EmailConstantes.TIPO_EMAIL_VAZIO;
 
 import java.util.Objects;
 
@@ -18,8 +21,6 @@ import br.com.contmatic.prova.model.auditoria.Auditoria;
 import br.com.contmatic.prova.utils.constants.EmailConstantes;
 
 public class Email extends Auditoria{
-	
-	private static final String REGEX_EMAIL = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
 
 	String dominioEmail;
 	
@@ -34,11 +35,11 @@ public class Email extends Auditoria{
 	}
 
 	public void setEmail(String email) {
-		verificaNulo(email, EMAIL_NULO_INVALIDO);
-		verificaValorVazio(email, EmailConstantes.EMAIL_VAZIO_INVÁLIDO);
-		verificaTamanhoMinimo(email, 3, EMAIL_DEVE_TER_MINIMO_DE_3_CARACTERES);
-		verificaTamanhoMaximo(email, 50, EMAIL_DEVE_TER_MAXIMO_DE_50_CARACTERES);
-		verificaRegex(email, REGEX_EMAIL, FORMATO_EMAIL_INVALIDO);
+		verificaNulo(email, TIPO_EMAIL_NULO);
+		verificaValorVazio(email, MSG_EMAIL_VAZIO);
+		verificaTamanhoMinimo(email, TAMANHO_3, EMAIL_DEVE_TER_MINIMO_DE_3_CARACTERES);
+		verificaTamanhoMaximo(email, TAMANHO_50, EMAIL_DEVE_TER_MAXIMO_DE_50_CARACTERES);
+		verificaRegex(email, REGEX_EMAIL, MSG_EMAIL_INVALIDO);
 		this.dominioEmail = email;
 	}
 
@@ -48,7 +49,7 @@ public class Email extends Auditoria{
 
 	public void setTipo(String tipo) {
 		verificaNulo(tipo, TIPO_EMAIL_NULO);
-		verificaValorVazio(tipo, EMAIL_VAZIO_INVÁLIDO);
+		verificaValorVazio(tipo, TIPO_EMAIL_VAZIO);
 		this.tipo = tipo;
 	}
 	
