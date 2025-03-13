@@ -3,7 +3,6 @@ package br.com.contmatic.prova.utils.constants;
 public final class CidadeConstantes {
 	
 	private CidadeConstantes() {
-		
 	}
 	
 	public static final String O_CAMPO_NOME_NAO_PODE_SER_NULO = "O campo Nome nao pode ser nulo";
@@ -16,9 +15,9 @@ public final class CidadeConstantes {
 	
 	public static final String NOME_COM_MAIS_DE_80_CARACTERES = "VAiVcwIxyyqElx@NJNgPuKxEbBBmPuSbrMYxdEyrFGwCeZgfqumvwFprpSUgQfpmxLrgodfdfvLWWHkçw";
 	
-	public static final String SP = "SP";
-	
 	public static final String SAO_PAULO = "SÃO PAULO";
+	
+	public static final String SP = "SP";	
 	
 	public static final Integer TAMANHO_3 = 3;
 	

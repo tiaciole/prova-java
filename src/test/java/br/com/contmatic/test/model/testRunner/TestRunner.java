@@ -7,5 +7,5 @@ import org.junit.platform.suite.api.Suite;
 @SelectPackages({ "br.com.contmatic.test.model.auditoria", "br.com.contmatic.test.model.email",
 		"br.com.contmatic.test.model.empresa", "br.com.contmatic.test.model.endereco",
 		"br.com.contmatic.test.model.telefone" })
-public class TestRunner {
+class TestRunner {
 }

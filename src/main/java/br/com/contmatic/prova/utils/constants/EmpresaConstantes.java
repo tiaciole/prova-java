@@ -3,7 +3,6 @@ package br.com.contmatic.prova.utils.constants;
 public final class EmpresaConstantes {
 	
 	private EmpresaConstantes (){
-		
 	}
 	
 	public static final String NAO_DEVE_CONTER_LETRA_NO_CNPJ = "Campo cnpj aceita apenas numero";
@@ -17,8 +16,6 @@ public final class EmpresaConstantes {
 	public static final String INSCRICAO_ESTUDAL_DEVE_TER_MAXIMO_10_CARACTERES = "campo Inscrição Estadual deve ter o tamanho máximo de 10 caracteres";
 	
 	public static final String INSCRICAO_ESTADUAL_DEVE_TER_APENAS_NUMERO = "O campo Inscrição Estadual deve ser apenas números";
-	
-	public static final String REGEX_INSCRICAO_ESTADUAL = "^[\\d]{5,10}$";
 	
 	public static final String INSCRICAO_ESTADUAL_NAO_DEVE_TER_APENAS_CARACTERES_REPETIDOS = "Iscrição estadual nao deve ter apenas caracteres repetidos";
 	
@@ -54,6 +51,8 @@ public final class EmpresaConstantes {
 	
 	public static final String NOME_TIAGO_ACIOLE = "Tiago Aciole";
 	
+	public static final String REGEX_INSCRICAO_ESTADUAL = "^[\\d]{5,10}$";
+	
 	public static final Integer TAMANHO_10 = 10;
 	
 	public static final Integer TAMANHO_2 = 2;	
@@ -67,5 +66,4 @@ public final class EmpresaConstantes {
 	public static final Integer TAMANHO_5 = 5;
 	
 	public static final Integer TAMANHO_1 = 1;
-	
 }

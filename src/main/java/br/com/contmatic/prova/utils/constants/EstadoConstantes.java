@@ -3,7 +3,6 @@ package br.com.contmatic.prova.utils.constants;
 public class EstadoConstantes {
 
 	private EstadoConstantes() {
-
 	}
 
 	public static final String O_CAMPO_ESTADO_NAO_PODE_SER_NULO = "O campo Estado não pode ser nulo";
@@ -43,5 +42,4 @@ public class EstadoConstantes {
 	public static final Integer TAMANHO_50 = 50;
 
 	public static final Integer TAMANHO_80 = 80;
-
 }

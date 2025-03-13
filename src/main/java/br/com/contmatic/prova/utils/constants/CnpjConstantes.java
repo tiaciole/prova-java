@@ -3,7 +3,6 @@ package br.com.contmatic.prova.utils.constants;
 public final class CnpjConstantes {
 	
 	private CnpjConstantes() {
-		
 	}
 	
 	public static final String ERRO_CNPJ_OBRIGATORIO = "O campo cnpj é obrigatório";
@@ -25,5 +24,4 @@ public final class CnpjConstantes {
 	public static final int POSICAO_PRIMEIRO_DIGITO = 11;
 	
 	public static final int PESO_INICIAL = 2;
-
 }

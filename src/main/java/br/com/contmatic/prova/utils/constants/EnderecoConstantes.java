@@ -56,5 +56,4 @@ public final class EnderecoConstantes {
 	public static final Integer TAMANHO_50 = 50;
 
 	public static final Integer TAMANHO_80 = 80;
-
 }
