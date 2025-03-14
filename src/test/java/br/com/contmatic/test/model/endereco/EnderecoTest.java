@@ -22,7 +22,6 @@ import br.com.contmatic.prova.model.empresa.Funcionario;
 import br.com.contmatic.prova.model.endereco.Cidade;
 import br.com.contmatic.prova.model.endereco.Endereco;
 import br.com.contmatic.prova.model.endereco.Estado;
-import br.com.contmatic.prova.utils.constants.EnderecoConstantes;
 
 class EnderecoTest {
 

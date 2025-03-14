@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import br.com.contmatic.prova.model.endereco.Cidade;
 import br.com.contmatic.prova.model.endereco.Estado;
-import br.com.contmatic.prova.utils.constants.CidadeConstantes;
 
 class CidadeTest {
 

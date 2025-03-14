@@ -15,8 +15,6 @@ import static br.com.contmatic.prova.utils.constants.EstadoConstantes.O_CAMPO_ES
 import java.util.Objects;
 
 import br.com.contmatic.prova.model.auditoria.Auditoria;
-import br.com.contmatic.prova.utils.constants.CidadeConstantes;
-import br.com.contmatic.prova.utils.constants.EstadoConstantes;
 
 public class Cidade extends Auditoria {
 

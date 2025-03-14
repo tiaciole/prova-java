@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 
 import br.com.contmatic.prova.model.email.Email;
 import br.com.contmatic.prova.model.empresa.Funcionario;
-import br.com.contmatic.prova.utils.constants.EmailConstantes;
 
  class EmailTest {
 

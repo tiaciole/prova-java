@@ -10,8 +10,6 @@ import static br.com.contmatic.prova.utils.constants.CpfConstantes.O_CPF_NAO_POD
 import static br.com.contmatic.prova.utils.constants.CpfConstantes.O_CPF_NAO_PODE_SER_VAZIO;
 import static br.com.contmatic.prova.utils.constants.CpfConstantes.TAMANHO_11;
 
-import br.com.contmatic.prova.utils.constants.CpfConstantes;
-
 public final class CpfUtils {
 
 	private static final int UM = 1;

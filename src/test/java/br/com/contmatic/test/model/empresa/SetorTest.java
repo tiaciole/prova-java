@@ -9,7 +9,6 @@ import static br.com.contmatic.prova.utils.constants.SetorConstantes.NOME_SETOR_
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.NOME_TIAGO;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.NUMERO_CPF_TIAGO;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.OITENTA_E_UM_CARACRETES;
-import static br.com.contmatic.prova.utils.constants.SetorConstantes.O_CAMPO_SETOR_NAO_PODE_SER_VAZIO;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.TOSTRING_SETOR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -23,7 +22,6 @@ import org.junit.jupiter.api.Test;
 
 import br.com.contmatic.prova.model.empresa.Funcionario;
 import br.com.contmatic.prova.model.empresa.Setor;
-import br.com.contmatic.prova.utils.constants.FuncionarioConstantes;
 import br.com.contmatic.prova.utils.constants.SetorConstantes;
 
 class SetorTest {

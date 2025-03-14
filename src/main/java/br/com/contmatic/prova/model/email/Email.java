@@ -18,7 +18,6 @@ import static br.com.contmatic.prova.utils.constants.EmailConstantes.TIPO_EMAIL_
 import java.util.Objects;
 
 import br.com.contmatic.prova.model.auditoria.Auditoria;
-import br.com.contmatic.prova.utils.constants.EmailConstantes;
 
 public class Email extends Auditoria{
 

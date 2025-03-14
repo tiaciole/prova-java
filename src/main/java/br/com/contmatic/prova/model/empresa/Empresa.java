@@ -41,10 +41,8 @@ import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.TAMANHO_3
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.TAMANHO_4;
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.TAMANHO_5;
 import static br.com.contmatic.prova.utils.constants.EnderecoConstantes.O_ENDERECO_NAO_PODE_SER_NULO;
-import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.CAMPOS_CADASTRO_FUNCIONARIOS_OBRIGATORIO;
 import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.LISTA_FUNCIONARIO_VAZIA;
 import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.NAO_DEVE_EXISTIR_MAIS_DE_10_FUNCIONARIOS_CADASTRADOS;
-import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.NAO_EXISTEM_FUNCIONARIOS_CADASTRADOS;
 import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.O_CAMPO_NOME_FUNCIONARIO_NAO_PODE_SER_NULO;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.CAMPO_SETOR_NULO;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.DEVE_EXISTIR_AO_MENOS_2_SETORES;
@@ -58,7 +56,6 @@ import java.util.Set;
 
 import br.com.contmatic.prova.model.auditoria.Auditoria;
 import br.com.contmatic.prova.model.endereco.Endereco;
-import br.com.contmatic.prova.utils.constants.FuncionarioConstantes;
 
 public class Empresa extends Auditoria {
 

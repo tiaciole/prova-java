@@ -32,8 +32,6 @@ import static br.com.contmatic.prova.utils.constants.EnderecoConstantes.tamanho_
 import java.util.Objects;
 
 import br.com.contmatic.prova.model.auditoria.Auditoria;
-import br.com.contmatic.prova.utils.constants.CidadeConstantes;
-import br.com.contmatic.prova.utils.constants.EnderecoConstantes;
 
    public class Endereco extends Auditoria{
 

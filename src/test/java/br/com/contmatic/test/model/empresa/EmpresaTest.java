@@ -26,7 +26,6 @@ import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_R
 import static br.com.contmatic.prova.utils.constants.EmpresaConstantes.O_CAMPO_RAZAO_SOCIAL_NAO_PODE_SER_VAZIO;
 import static br.com.contmatic.prova.utils.constants.EnderecoConstantes.O_ENDERECO_NAO_PODE_SER_NULO;
 import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.LISTA_FUNCIONARIO_VAZIA;
-import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.O_CAMPO_DO_FUNCIONARIO_NAO_PODE_SER_VAZIO;
 import static br.com.contmatic.prova.utils.constants.FuncionarioConstantes.O_CAMPO_NOME_FUNCIONARIO_NAO_PODE_SER_NULO;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.CAMPO_SETOR_NULO;
 import static br.com.contmatic.prova.utils.constants.SetorConstantes.DEVE_EXISTIR_AO_MENOS_2_SETORES;

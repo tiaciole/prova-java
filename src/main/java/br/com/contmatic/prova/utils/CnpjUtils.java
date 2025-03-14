@@ -15,8 +15,6 @@ import static br.com.contmatic.prova.utils.constants.CnpjConstantes.POSICAO_0_TA
 import static br.com.contmatic.prova.utils.constants.CnpjConstantes.POSICAO_PRIMEIRO_DIGITO;
 import static br.com.contmatic.prova.utils.constants.CnpjConstantes.POSICAO_SEGUNDO_DIGITO;
 
-import br.com.contmatic.prova.utils.constants.CnpjConstantes;
-
 public final class CnpjUtils {	
 	
 	private CnpjUtils() { // Construtor private para ninguem conseguir instanciar essa classe 
