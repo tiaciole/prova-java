@@ -3,7 +3,6 @@ package br.com.contmatic.prova.utils.constants;
 public final class EmailConstantes {
 	
 	private EmailConstantes() {
-		
 	}
 	
 	public static final String EMAIL_COM_MAIS_DE_80_CARACTERES = "VAiVcwIxyyqElx@NJNgPuKxEbBBmPuSbrMYxdEyrFGwCeZgfqumvwFprpSUgQfpmxLrgodfdfvLWWHkçw";

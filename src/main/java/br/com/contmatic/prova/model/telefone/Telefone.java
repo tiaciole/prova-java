@@ -125,8 +125,4 @@ public class Telefone extends Auditoria{
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-	
-
 }

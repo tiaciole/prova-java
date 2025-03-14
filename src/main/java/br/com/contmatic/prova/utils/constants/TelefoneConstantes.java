@@ -3,7 +3,6 @@ package br.com.contmatic.prova.utils.constants;
 public final class TelefoneConstantes {
 
 	private TelefoneConstantes() {
-
 	}
 
 	public static final String MSG_TELEFONE_INVALIDO = "Número de telefone inválido";
