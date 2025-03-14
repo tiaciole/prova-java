@@ -1,8 +1,8 @@
 package br.com.contmatic.test.model.empresa;
 
-import static br.com.contmatic.prova.utils.constants.CpfConstantes.CPF_INVALIDO;
-import static br.com.contmatic.prova.utils.constants.CpfConstantes.O_CPF_DEVE_TER_11_CARACTERES;
-import static br.com.contmatic.prova.utils.constants.CpfConstantes.O_CPF_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.CpfConstantesUtils.CPF_INVALIDO;
+import static br.com.contmatic.prova.utils.constants.CpfConstantesUtils.O_CPF_DEVE_TER_11_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.CpfConstantesUtils.O_CPF_NAO_PODE_SER_NULO;
 import static br.com.contmatic.prova.utils.constants.EmailConstantes.EMAIL_COM_MAIS_DE_80_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.EmailConstantes.EMAIL_DEVE_TER_MINIMO_DE_3_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.EmailConstantes.EMAIL_DEVE_TER_NO_MAXIMO_80_CARACTERES;

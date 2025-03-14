@@ -12,8 +12,7 @@ import br.com.contmatic.prova.model.empresa.Funcionario;
 
 public final class ValidacaoUtils {
 
-	private static final int SEGUNDO_CARACTER = 1;
-	private static final int PRIMEIRO_CARACTER = 0;
+	private static final int NUMERO_UM = 1;
 	private static final LocalDate DATA_MAXIMA = LocalDate.now();
 	private static final LocalDate DATA_MINIMA = LocalDate.of(1446, 1, 1);
 
@@ -65,10 +64,9 @@ public final class ValidacaoUtils {
 	}
 
 	public static void verificaCaracteresRepetidos(String valor, String mensagem) {
-		char primeiroChar = valor.charAt(PRIMEIRO_CARACTER);
-		for (int index = SEGUNDO_CARACTER; index < valor.length(); index++) {
-			char atual = valor.charAt(index);
-			if (atual != primeiroChar) {
+		char primeiroCaracter = valor.charAt(0);
+		for (int i = NUMERO_UM; i < valor.length(); i++) {
+			if (valor.charAt(i) != primeiroCaracter) {
 				return;
 			}
 		}
@@ -133,16 +131,16 @@ public final class ValidacaoUtils {
 	}
 
 	public static void verificaDataAuditoria(ZonedDateTime data, String mensagem) {
-		if (data.isAfter(now().plusSeconds(3L))|| data.isBefore(now().minusSeconds(3L))){
+		if (data.isAfter(now().plusSeconds(3L)) || data.isBefore(now().minusSeconds(3L))) {
 			throw new IllegalArgumentException(mensagem);
 		}
 	}
-	
+
 	public static void verificaTamanhoLimite(String valor, int tamanhoLimite, String mensagem) {
 		verificaNulo(valor, mensagem);
 		if (valor.length() != tamanhoLimite) {
 			throw new IllegalArgumentException(mensagem);
 		}
 	}
-	
+
 }

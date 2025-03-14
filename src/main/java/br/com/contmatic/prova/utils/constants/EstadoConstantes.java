@@ -1,6 +1,6 @@
 package br.com.contmatic.prova.utils.constants;
 
-public class EstadoConstantes {
+public final class EstadoConstantes {
 
 	private EstadoConstantes() {
 	}

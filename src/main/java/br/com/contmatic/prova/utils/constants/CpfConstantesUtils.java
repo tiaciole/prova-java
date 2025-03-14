@@ -1,8 +1,8 @@
 package br.com.contmatic.prova.utils.constants;
 
-public class CpfConstantes {
+public final class CpfConstantesUtils {
 	
-	private CpfConstantes() {	
+	private CpfConstantesUtils() {	
 	}
 	
 	public static final String O_CPF_NAO_PODE_SER_NULO = "O campo CPF não pode ser nulo";

@@ -4,11 +4,11 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaCaracteresRepe
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaNulo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaTamanhoLimite;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificaValorVazio;
-import static br.com.contmatic.prova.utils.constants.CpfConstantes.CPF_INVALIDO;
-import static br.com.contmatic.prova.utils.constants.CpfConstantes.O_CPF_DEVE_TER_11_CARACTERES;
-import static br.com.contmatic.prova.utils.constants.CpfConstantes.O_CPF_NAO_PODE_SER_NULO;
-import static br.com.contmatic.prova.utils.constants.CpfConstantes.O_CPF_NAO_PODE_SER_VAZIO;
-import static br.com.contmatic.prova.utils.constants.CpfConstantes.TAMANHO_11;
+import static br.com.contmatic.prova.utils.constants.CpfConstantesUtils.CPF_INVALIDO;
+import static br.com.contmatic.prova.utils.constants.CpfConstantesUtils.O_CPF_DEVE_TER_11_CARACTERES;
+import static br.com.contmatic.prova.utils.constants.CpfConstantesUtils.O_CPF_NAO_PODE_SER_NULO;
+import static br.com.contmatic.prova.utils.constants.CpfConstantesUtils.O_CPF_NAO_PODE_SER_VAZIO;
+import static br.com.contmatic.prova.utils.constants.CpfConstantesUtils.TAMANHO_11;
 
 public final class CpfUtils {
 
