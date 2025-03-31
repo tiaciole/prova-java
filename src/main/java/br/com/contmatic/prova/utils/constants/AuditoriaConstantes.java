@@ -7,7 +7,7 @@ public final class AuditoriaConstantes {
 	
 	public static final String NOME_CRIADOR_OBRIGATORIO = "O Nome Criador é de preenhimento obrigatorio";
 	
-	public static final String NOME_CRIADOR_SEM_ESPAÇO_BRANCO = "O campo Nome Criador não pode conter espaços em branco";
+	public static final String NOME_CRIADOR_SEM_ESPACO_BRANCO = "O campo Nome Criador não pode conter espaços em branco";
 	
 	public static final String NOME_CRIADOR_DEVE_TER_MINIMO_5_CARACTERES = "O Campo Nome Criador deve conter o minimo de 5 caracteres";
 	

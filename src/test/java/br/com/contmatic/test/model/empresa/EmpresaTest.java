@@ -353,7 +353,6 @@ class EmpresaTest {
 		funcionarioLista.add(funcionario8);
 		funcionarioLista.add(funcionario9);
 		funcionarioLista.add(funcionario10);
-		System.out.println(funcionarioLista);
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> empresa.setFuncionarios(funcionarioLista));
 		assertEquals(FuncionarioConstantes.NAO_DEVE_EXISTIR_MAIS_DE_10_FUNCIONARIOS_CADASTRADOS, erro.getMessage());
@@ -490,7 +489,6 @@ class EmpresaTest {
 		listaSetores.add(setor);
 		listaSetores.add(setor2);
 		empresa.setSetores(listaSetores);
-		System.out.println(empresa.toString());
 		assertEquals("Empresa [razaoSocial=Tiago Aciole, cnpj=67987198000110, endereco=null, dataCriacao=null, situacaoTributaria=null, setores=[Setor [nome=ADM1, chefe=Funcionario [nome=Tiago, endereco=null, salario=null, cpf=97973956000, telefone=null, email=null], funcionarios=null], Setor [nome=PETECA, chefe=Funcionario [nome=Tiago, endereco=null, salario=null, cpf=97801038053, telefone=null, email=null], funcionarios=null]], funcionarios=null, inscricaoEstadual=nullAuditoria [nomeCriador=null, nomeEditor=null, dataHoraCriacao=null, dataHoraAlteracao=null]]", empresa.toString());
 	}
 }

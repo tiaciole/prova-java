@@ -107,7 +107,6 @@ import br.com.contmatic.prova.model.telefone.Telefone;
 	void deve_retornar_verdadeiro_para_objetos_com_o_mesmo_DDD_DDi_Numero(){
 		Telefone telefone1 = new Telefone("11","031","201682455");
 		assertEquals(telefone, telefone1);
-		System.out.println(telefone);
 	}
 	
 	@Test

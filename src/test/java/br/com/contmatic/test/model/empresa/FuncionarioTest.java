@@ -43,16 +43,18 @@ import br.com.contmatic.prova.utils.constants.SetorConstantes;
 
 class FuncionarioTest {
 
+	private static final String _11111111111 = "11111111111";
+	private static final String TIAGO = "Tiago";
 	private Funcionario funcionario;
 
 	@BeforeEach
 	void set_up2() {
-		funcionario = new Funcionario("Tiago", "87806981071");
+		funcionario = new Funcionario(TIAGO, "87806981071");
 	}
 
 	@Test
 	void deve_aceitar_funcionario_válido() {
-		Assertions.assertEquals("Tiago", funcionario.getNome());
+		Assertions.assertEquals(TIAGO, funcionario.getNome());
 		Assertions.assertEquals("87806981071", funcionario.getCpf());
 	}
 
@@ -136,42 +138,42 @@ class FuncionarioTest {
 	@Test
 	void nao_deve_aceitar_cpf_nulo() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> new Funcionario("Tiago", null));
+				() -> new Funcionario(TIAGO, null));
 		assertEquals(O_CPF_NAO_PODE_SER_NULO, erro.getMessage()); // está dando erro o teste ver gui
 	}
 
 	@Test
 	void nao_deve_aceitar_cpf_menos_que_11_caracteres() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> new Funcionario("Tiago", "8780698107"));
+				() -> new Funcionario(TIAGO, "8780698107"));
 		assertEquals(O_CPF_DEVE_TER_11_CARACTERES, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_cpf_maior_que_11_caracteres() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> new Funcionario("Tiago", "878069810710"));
+				() -> new Funcionario(TIAGO, "878069810710"));
 		assertEquals(O_CPF_DEVE_TER_11_CARACTERES, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_cpf_com_numeros_repetidos() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> new Funcionario("Tiago", "11111111111"));
+				() -> new Funcionario(TIAGO, _11111111111));
 		assertEquals(CPF_INVALIDO, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_cpf_com_letras() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> new Funcionario("Tiago", "87806981k71"));
+				() -> new Funcionario(TIAGO, "87806981k71"));
 		assertEquals(CPF_INVALIDO, erro.getMessage());
 	}
 
 	@Test
 	void nao_deve_aceitar_cpf_com_digito_incorreto() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
-				() -> new Funcionario("Tiago", "87806981075"));
+				() -> new Funcionario(TIAGO, "87806981075"));
 		assertEquals(CPF_INVALIDO, erro.getMessage());
 	}
 
@@ -311,15 +313,13 @@ class FuncionarioTest {
 
 	@Test
 	void deve_retornar_verdadeiro_para_objetos_com_o_mesmo_cpf() {
-		Funcionario funcionario2 = new Funcionario("Tiago", "87806981071");
+		Funcionario funcionario2 = new Funcionario(TIAGO, "87806981071");
 		assertEquals(funcionario, funcionario2);
 	}
 
 	@Test
 	void deve_retornar_verdadeiro_o_toString() {
-		System.out.println(funcionario.toString());
-		assertEquals(
-				"Funcionario [nome=Tiago, endereco=null, salario=null, cpf=87806981071, telefone=null, email=null]",
+		assertEquals("Funcionario [nome=Tiago, endereco=null, salario=null, cpf=87806981071, telefone=null, email=null]",
 				funcionario.toString());
 	}
 

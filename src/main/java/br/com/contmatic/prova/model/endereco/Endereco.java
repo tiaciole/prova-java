@@ -26,8 +26,8 @@ import static br.com.contmatic.prova.utils.constants.EnderecoConstantes.TAMANHO_
 import static br.com.contmatic.prova.utils.constants.EnderecoConstantes.TAMANHO_2;
 import static br.com.contmatic.prova.utils.constants.EnderecoConstantes.TAMANHO_8;
 import static br.com.contmatic.prova.utils.constants.EnderecoConstantes.TAMANHO_80;
+import static br.com.contmatic.prova.utils.constants.EnderecoConstantes.TAMANHO_99999999;
 import static br.com.contmatic.prova.utils.constants.EnderecoConstantes.TAMANHO_MAXIMO_80_CARACTERES_LOGRADOURO;
-import static br.com.contmatic.prova.utils.constants.EnderecoConstantes.tamanho_99999999;
 
 import java.util.Objects;
 
@@ -72,7 +72,7 @@ import br.com.contmatic.prova.model.auditoria.Auditoria;
 	public void setNumero(Integer numero) {
 		verificaNulo(numero, O_CAMPO_NUMERO_E_DE_PREENCHIMENTO_OBRIGATORIO);
 		verificaValorMinimo(numero, TAMANHO_2, O_CAMPO_NUMERO_DEVE_TER_MINIMO_2_NUMEROS);
-		verificaValorMaximo(numero,tamanho_99999999, O_TAMANHO_MAXIMO_DO_CAMPO_NUMERO_E_DE_8_CARACTERES);
+		verificaValorMaximo(numero,TAMANHO_99999999, O_TAMANHO_MAXIMO_DO_CAMPO_NUMERO_E_DE_8_CARACTERES);
 		this.numero = numero;
 	}
 

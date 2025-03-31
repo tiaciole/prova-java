@@ -13,7 +13,7 @@ import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_CR
 import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_CRIADOR_DEVE_TER_MAXIMO_10_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_CRIADOR_DEVE_TER_MINIMO_5_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_CRIADOR_OBRIGATORIO;
-import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_CRIADOR_SEM_ESPAÇO_BRANCO;
+import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_CRIADOR_SEM_ESPACO_BRANCO;
 import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_EDITOR_COM_MUITOS_CARACTERES_REPETIDOS;
 import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_EDITOR_DEVE_TER_MAXIMO_10_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_EDITOR_DEVE_TER_MINIMO_5_CARACTERES;
@@ -47,7 +47,7 @@ public class Auditoria {
 	
 	public void setNomeCriador(String nomeCriador) {
 		verificaNulo(nomeCriador, NOME_CRIADOR_OBRIGATORIO);
-		verificaValorVazio(nomeCriador, NOME_CRIADOR_SEM_ESPAÇO_BRANCO);
+		verificaValorVazio(nomeCriador,NOME_CRIADOR_SEM_ESPACO_BRANCO);
 		verificaTamanhoMinimo(nomeCriador, TAMANHO_MINIMO_MINIMO_5, NOME_CRIADOR_DEVE_TER_MINIMO_5_CARACTERES);
 		verificaTamanhoMaximo(nomeCriador, TAMANHO_MAXIMO_10, NOME_CRIADOR_DEVE_TER_MAXIMO_10_CARACTERES);
 		verificaCaracteresRepetidos(nomeCriador, NOME_CRIADOR_COM_MUITOS_CARACTERES_REPETIDOS);

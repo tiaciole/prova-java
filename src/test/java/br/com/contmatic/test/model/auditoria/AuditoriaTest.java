@@ -7,7 +7,7 @@ import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_CR
 import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_CRIADOR_DEVE_TER_MAXIMO_10_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_CRIADOR_DEVE_TER_MINIMO_5_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_CRIADOR_OBRIGATORIO;
-import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_CRIADOR_SEM_ESPAÇO_BRANCO;
+import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_CRIADOR_SEM_ESPACO_BRANCO;
 import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_EDITOR_COM_MUITOS_CARACTERES_REPETIDOS;
 import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_EDITOR_DEVE_TER_MAXIMO_10_CARACTERES;
 import static br.com.contmatic.prova.utils.constants.AuditoriaConstantes.NOME_EDITOR_DEVE_TER_MINIMO_5_CARACTERES;
@@ -64,7 +64,7 @@ class AuditoriaTest {
 	}
 
 	@Test
-	@Disabled
+	@Disabled("Está desabilitado para cumprir uma regra da prova")
 	void test12_deve_ser_ignorado() {
 		auditoria.setNomeCriador("Tiago");
 		assertEquals("Tiago", auditoria.getNomeCriador());
@@ -88,7 +88,7 @@ class AuditoriaTest {
 	void test03_nao_deve_aceitar_campo_nome_criador_vazio() {
 		IllegalArgumentException erro = assertThrows(IllegalArgumentException.class,
 				() -> auditoria.setNomeCriador(""));
-		assertEquals(NOME_CRIADOR_SEM_ESPAÇO_BRANCO, erro.getMessage());
+		assertEquals(NOME_CRIADOR_SEM_ESPACO_BRANCO, erro.getMessage());
 	}
 
 	@Test
@@ -203,7 +203,6 @@ class AuditoriaTest {
 
 	@Test
 	void test20_deve_retornar_verdadeiro_para_o_toString() {
-		System.out.println(auditoria);
 		assertEquals("Auditoria [nomeCriador=null, nomeEditor=null, dataHoraCriacao=null, dataHoraAlteracao=null]",
 				auditoria.toString());
 	}

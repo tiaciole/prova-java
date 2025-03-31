@@ -8,7 +8,6 @@ import static br.com.contmatic.prova.utils.constants.EstadoConstantes.O_TAMANHO_
 import static br.com.contmatic.prova.utils.constants.EstadoConstantes.SAO_PAULO;
 import static br.com.contmatic.prova.utils.constants.EstadoConstantes.SP;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -79,7 +78,8 @@ import br.com.contmatic.prova.model.endereco.Estado;
 	@Test
 	void deve_retornar_falso_para_equals_comparado_com_nulo() {
 		Estado estado2= new Estado(SP);
-		assertFalse(estado2.equals(null));
+		Estado estado1 = null;
+		assertNotEquals(estado2, estado1);
 	}
 	
 	@Test

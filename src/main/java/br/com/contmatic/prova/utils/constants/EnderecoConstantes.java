@@ -41,7 +41,7 @@ public final class EnderecoConstantes {
 	
 	public static final String NOME_COM_MAIS_DE_80_CARACTERES = "VAiVcwIxyyqElx@NJNgPuKxEbBBmPuSbrMYxdEyrFGwCeZgfqumvwFprpSUgQfpmxLrgodfdfvLWWHkçw";
 	
-	public static final Integer tamanho_99999999 = 99999999;
+	public static final Integer TAMANHO_99999999 = 99999999;
 
 	public static final Integer TAMANHO_1 = 1;
 
